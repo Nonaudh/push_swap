@@ -23,14 +23,16 @@ bool	fill_the_stack(stack *a, int *tab)
 
 */
 
-void	print_stack(int *tab, int start, int end, int size)
+void	print_stack(stack *stck)
 {
-	while (end != start)
+	int i = stck->top;
+
+	while (i != stck->bottom)
 	{
-		ft_printf("%d\n", tab[end]);
-		end = (end + 1) % size;
+		ft_printf("%d  ", stck->values[i]);
+		i = (i + 1) % stck->size;
 	}
-	ft_printf("%d\n", tab[end]);
+	ft_printf("%d\n", stck->values[i]);
 }
 
 void	simplify_and_stack(int *tab, int *values, int size)
@@ -55,7 +57,52 @@ void	simplify_and_stack(int *tab, int *values, int size)
 	}
 }
 
-void	*fill_the_stack(p_s *data, stack *a, int size, char *argv[])
+void	check_duplicate(int *tab, int size)
+{
+	int	i;
+	int	j;
+	bool	duplicate;
+
+	i = 0;
+	duplicate = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size)
+		{
+			if (i != j && tab[i] == tab[j])
+				exit(EXIT_FAILURE);
+			j++;
+		}
+	i++;
+	}
+}
+
+void	check_valid_arg(char *arg)
+{
+	int	i;
+	long	nb;
+
+	i = 0;
+	while (arg[i] <= 32)
+		i++;
+	
+	if (arg[i] == '-' || arg[i] == '+')
+		i++;
+	
+	while (arg[i])
+	{
+		if (!ft_isdigit(arg[i]))
+			exit(EXIT_FAILURE);
+		nb = nb * 10 + arg[i] + 48;
+		i++;
+	}
+
+	//if (nb < INT_MIN || nb > INT_MAX)
+		//exit(EXIT_FAILURE);
+}
+
+void	fill_the_stack(p_s *data, stack *a, int size, char *argv[])
 {
 	int	*tab;
 	int	i;
@@ -63,15 +110,17 @@ void	*fill_the_stack(p_s *data, stack *a, int size, char *argv[])
 	i = 0;
 	tab = malloc(sizeof(int) * size);
 
-	while(argv[i])
+	while (argv[i])
 	{
+		check_valid_arg(argv[i]);
 		tab[i] = ft_atoi(argv[i]);
 		i++;
 	}
+	check_duplicate(tab, size);
 	simplify_and_stack(tab, a->values, size);
 	a->bottom = size - 1;
 
-	print_stack(a->values, a->bottom, a->top, a->size);
+	print_stack(a);
 }
 
 void	init_stack(p_s *data, stack *stck, int size)
