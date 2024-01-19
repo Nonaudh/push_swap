@@ -7,14 +7,20 @@
 #include "lib/libft/libft.h"
 #include "lib/ft_printf/ft_printf.h"
 
-typedef struct
+typedef struct s_stack
 {
-    int *tab;
+    int *values;
     int bottom;
     int top;
     int size;
-    int num_entries;
 } stack;
+
+typedef struct push_swap
+{
+    stack a;
+    stack b;
+} p_s;
+
 
 #include <stdio.h> /////////
 

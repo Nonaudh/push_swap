@@ -1,5 +1,5 @@
 #include "push_swap.h"
-
+/*
 bool	stack_empty(stack *a)
 {
 	return (a->num_entries == 0);
@@ -12,82 +12,89 @@ bool	stack_full(stack *a)
 
 void	free_the_stack(stack *a)
 {
-	free(a->tab);
+	free(a->values);
 }
 
-bool	fill_the_stack(stack *a, int value)
+bool	fill_the_stack(stack *a, int *tab)
 {
-	if (stack_full(a))
-		return (false);
 	
-	a->tab[a->top] = value;
-	a->num_entries++;
-	a->top = (a->top + 1) % a->size;
-
-	return (true);
 }
 
-void	init_stack(stack *a, int buff_size)
-{
-	a->size = buff_size;
-	a->tab = malloc(sizeof(int) * a->size);
-	a->top = 0;
-	a->bottom = 0;
-	a->num_entries = 0;
-}
 
-void	print_stack(stack *a)
-{
-	int i = 1;
+*/
 
-	while (a->num_entries - i > -1)
+void	print_stack(int *tab, int start, int end, int size)
+{
+	while (end != start)
 	{
-		ft_printf("%d\n", a->tab[a->num_entries - i]);
-		i++;
+		ft_printf("%d\n", tab[end]);
+		end = (end + 1) % size;
 	}
-	printf("num; %d\n", a->num_entries);
-	printf("size; %d\n", a->size);
-	printf("top; %d\n", a->top);
-	printf("bott; %d\n", a->bottom);
+	ft_printf("%d\n", tab[end]);
 }
 
-int	*fill_the_tab(int *tab, int argc, char *argv[])
+void	simplify_and_stack(int *tab, int *values, int size)
 {
-	int i;
+	int	j;
+	int	i;
+	int	rank;
 
 	i = 0;
-	tab = malloc(sizeof(int) * (argc - 1));
-
-	while (i < argc - 1)
+	while (i < size)
 	{
-		tab[i] = ft_atoi(argv[argc - 1 - i]);
+		j = 0;
+		rank = 0;
+		while (j < size)
+		{
+			if (tab[i] >= tab[j])
+				rank++;
+			j++;
+		}
+		values[i] = rank;
 		i++;
 	}
-	return (tab);
+}
+
+void	*fill_the_stack(p_s *data, stack *a, int size, char *argv[])
+{
+	int	*tab;
+	int	i;
+
+	i = 0;
+	tab = malloc(sizeof(int) * size);
+
+	while(argv[i])
+	{
+		tab[i] = ft_atoi(argv[i]);
+		i++;
+	}
+	simplify_and_stack(tab, a->values, size);
+	a->bottom = size - 1;
+
+	print_stack(a->values, a->bottom, a->top, a->size);
+}
+
+void	init_stack(p_s *data, stack *stck, int size)
+{
+	stck->values = malloc(sizeof(int) * size);
+	stck->bottom = 0;
+	stck->top = 0;
+	stck->size = size;
+}
+
+void	init_data(p_s *data, int argc, char *argv[])
+{
+	argc--;
+	argv++;
+	init_stack(data, &data->a, argc);
+	init_stack(data, &data->b, argc);
+	fill_the_stack(data, &data->a, argc, argv);
 }
 
 int	main(int argc, char *argv[])
 {
-	int i = 0;
-	int *tab = NULL;
-	stack	a;
-	stack	b;
+	p_s	data;
 
-	if (argc > 1)
-	{
-		tab = fill_the_tab(tab, argc, argv);
-
-		init_stack(&a, argc - 1);
-		init_stack(&b, argc - 1);
-
-		while (i < argc - 1)
-		{
-			fill_the_stack(&a, tab[i]);
-			i++;
-		}
-		free (tab);
-		print_stack(&a);
-		print_stack(&b);
-	}
+	init_data(&data, argc, argv);
 	return (1);
 }
