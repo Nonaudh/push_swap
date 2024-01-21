@@ -6,14 +6,14 @@ void	rotate(stack *stck)
 
 	if (stack_full(stck))
 	{
-		stck->top = index_up(stck, stck->top);
-		stck->bottom = index_up(stck, stck->bottom);
+		stck->bottom = index_down(stck, stck->bottom);
+		stck->top = index_down(stck, stck->top);
 	}
 	else
 	{
 		tmp = stck->values[stck->top];
-		stck->top = index_up(stck, stck->top);
-		stck->bottom = index_up(stck, stck->bottom);
+		stck->bottom = index_down(stck, stck->bottom);
+		stck->top = index_down(stck, stck->top);
 		stck->values[stck->bottom] = tmp;
 	}
 }

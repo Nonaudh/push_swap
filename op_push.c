@@ -6,13 +6,19 @@ void	push(stack *src, stack *dst)
 		return ;
 
 	if (!stack_empty(dst))
-		dst->top = index_down(dst, dst->top);
+		dst->top = index_up(dst, dst->top);
 	
 	dst->values[dst->top] = src->values[src->top];
 	
-	src->top = index_up(src, src->top);
+	src->top = index_down(src, src->top);
 	src->num_entries--;
 	dst->num_entries++;
+
+	if (stack_empty(src))
+	{
+		src->bottom = 0;
+		src->top = 0;
+	}
 }
 
 void	push_a(p_s *data)

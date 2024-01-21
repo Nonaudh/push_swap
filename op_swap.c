@@ -9,25 +9,25 @@ void	swap(stack *stck)
 		return ;
 
 	tmp = stck->values[stck->top];
-	stck->values[stck->top] = stck->values[index_up(stck, stck->top)];
-	stck->values[index_up(stck, stck->top)] = tmp;
+	stck->values[stck->top] = stck->values[index_down(stck, stck->top)];
+	stck->values[index_down(stck, stck->top)] = tmp;
 }
 
-void	swap_a(stack *a)
+void	swap_a(p_s *data)
 {
-	swap(a);
+	swap(&data->a);
 	ft_printf("sa\n");
 }
 
-void	swap_b(stack *b)
+void	swap_b(p_s *data)
 {
-	swap(b);
+	swap(&data->b);
 	ft_printf("sb\n");
 }
 
-void	swap_ab(stack *a, stack *b)
+void	swap_ab(p_s *data)
 {
-	swap(a);
-	swap(b);
+	swap(&data->a);
+	swap(&data->b);
 	ft_printf("ss\n");
 }
