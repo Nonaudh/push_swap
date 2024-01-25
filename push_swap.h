@@ -30,7 +30,7 @@ void	init_data(p_s *data, int argc, char *argv[]);
 void	init_stack(p_s *data, stack *stck, int size);
 void	fill_the_stack(p_s *data, stack *a, int size, char *argv[]);
 
-void	check_valid_arg(p_s *data, char *arg);
+void	check_valid_arg(p_s *data, char *arg, int *tab);
 void	check_duplicate(p_s *data, int *tab, int size);
 void	simplify_and_stack(int *tab, int *values, int size);
 
@@ -63,5 +63,26 @@ void	reverse_rotate(stack *stck);
 void	r_rotate_a(p_s *data);
 void	r_rotate_b(p_s *data);
 void	r_rotate_ab(p_s *data);
+
+void    sort(p_s *data);
+bool	is_a_sorted(stack *a);
+
+void	sort_three_a(p_s *data, stack *a);
+void	sort_three_b(p_s *data, stack *b);
+
+void    sort_two(p_s *data, stack *a);
+
+void	sort_five(p_s *data, stack *a, stack *b);
+
+void	sort_one_hundred(p_s *data, stack *a, stack *b);
+
+int		find_index(int value, int *tab, stack *b);
+int 	locate_index(int value, int *tab, stack *b);
+int		index_min(stack *stck);
+bool	value_is_min(int value, int *tab, stack *b);
+int		index_max(stack *stck);
+bool	value_is_max(int value, int *tab, stack *b);
+
+void    push_to_index(p_s *data, stack *b, int *tab, int index);
 
 #endif

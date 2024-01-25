@@ -43,32 +43,29 @@ void	check_duplicate(p_s *data, int *tab, int size)
 	}
 }
 
-void	check_valid_arg(p_s *data, char *arg)
+void	check_valid_arg(p_s *data, char *arg, int *tab)
 {
 	int		i;
-	int		sign;
 	long	nb;
 
 	i = 0;
 	nb = 0;
-	sign = 1;
 	while (arg[i] <= 32)
 		i++;
 	
 	if (arg[i] == '-' || arg[i] == '+')
-	{
-		if(arg[i] == '-')
-			sign = -1;
 		i++;
-	}
 	while (arg[i])
 	{
 		if (!ft_isdigit(arg[i]))
+		{
+			free(tab);
 			error(data);
-		nb = (nb * 10) + (arg[i] - 48);
+		}
 		i++;
 	}
-	nb *= sign;
+
+	nb = ft_atol(arg);
 	if (nb < INT_MIN || nb > INT_MAX)
 		error(data);
 }
@@ -81,9 +78,9 @@ void	fill_the_stack(p_s *data, stack *a, int size, char *argv[])
 	i = 0;
 	tab = malloc(sizeof(int) * size);
 
-	while (argv[i])
+	while (i < size)
 	{
-		check_valid_arg(data, argv[i]);
+		check_valid_arg(data, argv[i], tab);
 		tab[(size - 1) - i] = ft_atoi(argv[i]);
 		i++;
 	}
@@ -116,28 +113,11 @@ int	main(int argc, char *argv[])
 	p_s	data;
 
 	init_data(&data, argc, argv);
-
-	for (int i = 0; i != 4; i++)
-	{
-		print_stack(&data.a);
-		//print_stack(&data.b);
-		r_rotate_a(&data);
-	}
-
-	for (int i = 0; i != 0; i++)
-	{
-		//print_stack(&data.a);
-		//print_stack(&data.b);
-		push_b(&data);
-	}
-	for (int i = 0; i != 0; i++)
-	{
-		//print_stack(&data.a);
-		print_stack(&data.b);
-		r_rotate_b(&data);
-	}
-	//print_stack(&data.a);
+	sort(&data);
+	print_stack(&data.a);
 	print_stack(&data.b);
+	if(is_a_sorted(&data.a))
+		ft_printf("ok\n");
 	free_data(&data);
 	return (1);
 }
