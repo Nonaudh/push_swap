@@ -83,6 +83,6 @@ bool	value_is_min(int value, int *tab, stack *b);
 int		index_max(stack *stck);
 bool	value_is_max(int value, int *tab, stack *b);
 
-void    push_to_index(p_s *data, stack *b, int *tab, int index);
+void    push_to_index(p_s *data, stack *src, stack *dest, int index_src, int index_dst);
 
 #endif

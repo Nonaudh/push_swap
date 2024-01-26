@@ -113,9 +113,24 @@ int	main(int argc, char *argv[])
 	p_s	data;
 
 	init_data(&data, argc, argv);
+
+		print_stack(&data.a);
+		print_stack(&data.b);
+
 	sort(&data);
-	print_stack(&data.a);
-	print_stack(&data.b);
+
+	/*for (int i=0; i<20; i++)
+	{
+		ft_printf("\n");
+		print_stack(&data.a);
+		print_stack(&data.b);
+		if (i < 8)
+			push_b(&data);
+		else
+			rotate_ab(&data);
+	}*/
+		print_stack(&data.a);
+		print_stack(&data.b);
 	if(is_a_sorted(&data.a))
 		ft_printf("ok\n");
 	free_data(&data);

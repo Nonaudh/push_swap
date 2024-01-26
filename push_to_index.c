@@ -20,22 +20,32 @@ bool rotate_is_more_eficient(stack *stck, int index)
     return(false);
 }
 
-void    push_to_index(p_s *data, stack *b, int *tab, int index)
+void    push_to_index(p_s *data, stack *src, stack *dst, int index_src, int index_dst)
 {
-   /* if (rotate_is_more_eficient(b, index))
+        /*while (src->top != index_src && dst->top != index_dst)
+         {
+            rotate_ab(data);
+         }*/ 
+
+       // print_stack(&data->a);
+		//print_stack(&data->b);
+
+        while (src->top != index_src)
+            rotate_a(data);
+
+       // printf("dst; %d\n", index_dst);
+       // printf("val; %d\n", src->values[index_src]);
+        while (dst->top != index_dst)
+        {
+           rotate_b(data);
+          // sleep(1);
+        }
+    if (src->top == index_src && dst->top == index_dst)
     {
-        while (b->top != index)
-            rotate_b(data);
+        print_stack(&data->a);
+		print_stack(&data->b);
+        push_b(data);
     }
     else
-    {
-        while (b->top != index)
-            r_rotate_b(data);
-    }*/
-        while (b->top != index)
-           rotate_b(data);
-
-    //print_stack(&data->a);
-    //print_stack(b);
-    push_b(data);
+        error(data);
 }
