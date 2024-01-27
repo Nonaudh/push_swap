@@ -9,8 +9,8 @@ void	sort(p_s *data)
 	if (data->a.size == 3)
 		sort_three_a(data, &data->a);
 	if (data->a.size == 5 || data->a.size == 4)
-		sort_five(data, &data->a, &data->b);
+		sort_five(data, &data->a);
 	if (data->a.size > 5)
-		sort_one_hundred(data, &data->a, &data->b);
+		sort_hundred(data, &data->a, &data->b);
 	
 }

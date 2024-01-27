@@ -26,10 +26,8 @@ void	check_duplicate(p_s *data, int *tab, int size)
 {
 	int	i;
 	int	j;
-	bool	duplicate;
 
 	i = 0;
-	duplicate = 0;
 	while (i < size)
 	{
 		j = 0;
@@ -91,7 +89,7 @@ void	fill_the_stack(p_s *data, stack *a, int size, char *argv[])
 	a->num_entries = size;
 }
 
-void	init_stack(p_s *data, stack *stck, int size)
+void	init_stack(stack *stck, int size)
 {
 	stck->values = malloc(sizeof(int) * size);
 	stck->bottom = 0;
@@ -103,8 +101,8 @@ void	init_data(p_s *data, int argc, char *argv[])
 {
 	argc--;
 	argv++;
-	init_stack(data, &data->a, argc);
-	init_stack(data, &data->b, argc);
+	init_stack(&data->a, argc);
+	init_stack(&data->b, argc);
 	fill_the_stack(data, &data->a, argc, argv);
 }
 
@@ -113,24 +111,9 @@ int	main(int argc, char *argv[])
 	p_s	data;
 
 	init_data(&data, argc, argv);
-
-		print_stack(&data.a);
-		print_stack(&data.b);
-
 	sort(&data);
-
-	/*for (int i=0; i<20; i++)
-	{
-		ft_printf("\n");
-		print_stack(&data.a);
-		print_stack(&data.b);
-		if (i < 8)
-			push_b(&data);
-		else
-			rotate_ab(&data);
-	}*/
-		print_stack(&data.a);
-		print_stack(&data.b);
+	//print_stack(&data.a);
+	//print_stack(&data.b);
 	if(is_a_sorted(&data.a))
 		ft_printf("ok\n");
 	free_data(&data);

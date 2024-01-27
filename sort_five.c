@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	sort_five(p_s *data, stack *a, stack *b)
+void	sort_five(p_s *data, stack *a)
 {
     while (a->num_entries != 3)
     {

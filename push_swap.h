@@ -27,7 +27,7 @@ typedef struct push_swap
 
 int	    main(int argc, char *argv[]);
 void	init_data(p_s *data, int argc, char *argv[]);
-void	init_stack(p_s *data, stack *stck, int size);
+void	init_stack(stack *stck, int size);
 void	fill_the_stack(p_s *data, stack *a, int size, char *argv[]);
 
 void	check_valid_arg(p_s *data, char *arg, int *tab);
@@ -72,17 +72,33 @@ void	sort_three_b(p_s *data, stack *b);
 
 void    sort_two(p_s *data, stack *a);
 
-void	sort_five(p_s *data, stack *a, stack *b);
+void	sort_five(p_s *data, stack *a);
 
-void	sort_one_hundred(p_s *data, stack *a, stack *b);
+void	sort_hundred(p_s *data, stack *a, stack *b);
+void    push_to_b(p_s *data, stack *a, stack *b);
+int		optimisation(p_s *data, stack *a, stack *b);
+int		count_operations(p_s *data, stack *b, int value);
+void	align_dst_and_src(p_s *data, stack *a, stack *b, int value_src, int value_dst);
+int		find_value_dst(stack *b, int value);
+int		value_location_b(stack *b, int *tab_b, int value);
 
-int		find_index(int value, int *tab, stack *b);
-int 	locate_index(int value, int *tab, stack *b);
-int		index_min(stack *stck);
-bool	value_is_min(int value, int *tab, stack *b);
-int		index_max(stack *stck);
-bool	value_is_max(int value, int *tab, stack *b);
+int		value_min(stack *stck);
+int		value_max(stack *stck);
 
-void    push_to_index(p_s *data, stack *src, stack *dest, int index_src, int index_dst);
+int		define_strategy(stack *a, stack *b, int index_src, int index_dst, int mode);
+int 	first_strategy(stack *a, stack *b, int index_src, int index_dst);
+int 	second_strategy(stack *a, stack *b, int index_src, int index_dst);
+int 	third_strategy(stack *a, stack *b, int value_src, int value_dst);
+int 	fourth_strategy(stack *a, stack *b, int value_src, int value_dst);
+
+int		less_move(int *count);
+int		best_strat(int *count);
+
+void	ex_first_strategy(p_s *data, stack *a, stack *b, int index_src, int index_dst);
+void	ex_second_strategy(p_s *data, stack *a, stack *b, int value_src, int value_dst);
+void	ex_third_strategy(p_s *data, stack *a, stack *b, int index_src, int index_dst);
+void	ex_fourth_strategy(p_s *data, stack *a, stack *b, int value_src, int value_dst);
+
+void	final_push(p_s *data, stack *a, stack *b);
 
 #endif
