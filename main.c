@@ -95,6 +95,7 @@ void	init_stack(stack *stck, int size)
 	stck->bottom = 0;
 	stck->top = 0;
 	stck->size = size;
+	stck->num_entries = 0;
 }
 
 void	init_data(p_s *data, int argc, char *argv[])
@@ -112,8 +113,6 @@ int	main(int argc, char *argv[])
 
 	init_data(&data, argc, argv);
 	sort(&data);
-	//print_stack(&data.a);
-	//print_stack(&data.b);
 	if(is_a_sorted(&data.a))
 		ft_printf("ok\n");
 	free_data(&data);

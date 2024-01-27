@@ -12,5 +12,4 @@ void	sort(p_s *data)
 		sort_five(data, &data->a);
 	if (data->a.size > 5)
 		sort_hundred(data, &data->a, &data->b);
-	
 }

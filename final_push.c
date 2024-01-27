@@ -1,43 +1,5 @@
 #include "push_swap.h"
 
-int value_max(stack *stck)
-{
-	int i;
-	int x;
-	int max;
-
-	i = stck->bottom;
-	x = 0;
-	max = 0;
-	while (x != stck->num_entries)
-	{
-		if (stck->values[i] > max)
-			max = stck->values[i];
-		i = index_up(stck, i);
-		x++;
-	}
-	return(max);
-}
-
-int	value_min(stack *stck)
-{
-	int	i;
-	int	x;
-	int	min;
-
-	i = stck->bottom;
-	x = 0;
-	min = INT_MAX;
-	while (x != stck->num_entries)
-	{
-		if (stck->values[i] < min)
-			min = stck->values[i];
-		i = index_up(stck, i);
-		x++;
-	}
-	return(min);
-}
-
 int	value_location_a(stack *a, int *tab_a, int value_src)
 {
 	int	i;
@@ -111,9 +73,7 @@ void	push_to_a(p_s *data, stack *a, int value_dst)
 		if (strategy == 2)
 			r_rotate_a(data);
 	}
-	//print_stack(&data->b);
 	push_a(data);
-	//print_stack(a);
 }
 
 void    align_and_push(p_s *data, stack *a, int value_src)

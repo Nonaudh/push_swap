@@ -51,7 +51,4 @@ void	print_stack(stack *stck)
 		i++;
 	}
 	ft_printf("\n");
-	//ft_printf("bot; %d  ", stck->bottom);
-	//ft_printf("top; %d\n", stck->top);
-	//ft_printf("num; %d\n", stck->num_entries);
 }

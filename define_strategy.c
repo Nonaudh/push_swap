@@ -56,7 +56,7 @@ int second_strategy(stack *a, stack *b, int value_src, int value_dst)
 	return (INT_MAX);
 }
 
-/**/int third_strategy(stack *a, stack *b, int value_src, int value_dst)
+int third_strategy(stack *a, stack *b, int value_src, int value_dst)
 {
 	int	i;
 	int	j;
@@ -110,7 +110,7 @@ int fourth_strategy(stack *a, stack *b, int value_src, int value_dst)
 	if (a->values[i] == value_src && b->values[j] == value_dst)
 		return (count);
 	return (INT_MAX);
-}/**/
+}
 
 int	define_strategy(stack *a, stack *b, int value_src, int value_dst, int mode)
 {
@@ -118,16 +118,12 @@ int	define_strategy(stack *a, stack *b, int value_src, int value_dst, int mode)
 
 	count[0] = first_strategy(a, b, value_src, value_dst);
 	count[1] = second_strategy(a, b, value_src, value_dst);
-	/**/count[2] = third_strategy(a, b, value_src, value_dst);
-	count[3] = fourth_strategy(a, b, value_src, value_dst);/**/
-	//printf("vs; %d  vd; %d\n", value_src, value_dst);
-	//printf("s1; %d  s2; %d  s3; %d  s4; %d\n", count[0], count[1], count[2], count[3]);
-	//printf("best_strat; %d\n", best_strat(count));
-
-	if (mode == 1)
+	count[2] = third_strategy(a, b, value_src, value_dst);
+	count[3] = fourth_strategy(a, b, value_src, value_dst);
+	if (mode == COUNT)
 		return (less_move(count));
 
-	if (mode == 2)
+	if (mode == STRAT)
 		return (best_strat(count));
 	return (0);
 }

@@ -8,6 +8,9 @@
 #include "lib/libft/libft.h"
 #include "lib/ft_printf/ft_printf.h"
 
+#define COUNT 1
+#define STRAT 2
+
 #include <stdio.h> ///////|to_delete|////////
 
 typedef struct s_stack

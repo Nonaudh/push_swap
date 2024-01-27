@@ -39,14 +39,12 @@ void	align_dst_and_src(p_s *data, stack *a, stack *b, int value_src, int value_d
 {
 	int	strategy;
 
-	strategy = define_strategy(a, b, value_src, value_dst, 2);
-	//printf("strat; %d\n", strategy);
-
+	strategy = define_strategy(a, b, value_src, value_dst, STRAT);
 	if (strategy == 1)
 		ex_first_strategy(data, a, b, value_src, value_dst);
 	if (strategy == 2)
 		ex_second_strategy(data, a, b, value_src, value_dst);
-	/**/if (strategy == 3)
+	if (strategy == 3)
 		ex_third_strategy(data, a, b, value_src, value_dst);
 	if (strategy == 4)
 		ex_fourth_strategy(data, a, b, value_src, value_dst);/**/
@@ -57,7 +55,7 @@ int	count_operations(p_s *data, stack *b, int value_src)
 	int	value_dst;
 
 	value_dst = find_value_dst(b, value_src);
-	return (define_strategy(&data->a, b, value_src, value_dst, 1));
+	return (define_strategy(&data->a, b, value_src, value_dst, COUNT));
 }
 
 int	optimisation(p_s *data, stack *a, stack *b)
@@ -83,7 +81,7 @@ int	optimisation(p_s *data, stack *a, stack *b)
 		index = index_down(a, index);
 		x++;
 	}
-	/**/index = a->bottom;
+	index = a->bottom;
 	x = 0;
 	while (x < count_min && index != a->top)
 	{
@@ -95,7 +93,7 @@ int	optimisation(p_s *data, stack *a, stack *b)
 		}
 		index = index_up(a, index);
 		x++;
-	}/**/
+	}
 	return (value_opti);
 }
 
@@ -106,11 +104,8 @@ void    push_to_b(p_s *data, stack *a, stack *b)
 
 	value_src = optimisation(data, a, b);
 	value_dst = find_value_dst(b, value_src);
-	//printf("src;  %d  dst;  %d\n", value_src, value_dst);
 	align_dst_and_src(data, a, b, value_src, value_dst);
-	//print_stack(a);
 	push_b(data);
-	//print_stack(b);
 }
 
 void	sort_hundred(p_s *data, stack *a, stack *b)
