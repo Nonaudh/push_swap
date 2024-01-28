@@ -113,6 +113,6 @@ void	locate_and_push_to_a(p_s *data, stack *a, int *tab_a, int value_src);
 void	push_to_a(p_s *data, stack *a, int value_dst);
 int		value_location_a(stack *a, int *tab_a, int value_src);
 void	push_to_a(p_s *data, stack *a, int value_dst);
-int strategy_b_to_a(stack *a, int value_dst);
+int 	strategy_b_to_a(stack *a, int value_dst);
 
 #endif
