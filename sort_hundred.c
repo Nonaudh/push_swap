@@ -27,10 +27,8 @@ int	find_value_dst(stack *b, int value)
 	int	max;
 
 	min = value_min(b);
-	if (min > value)
-		return(value_max(b));
 	max = value_max(b);
-	if (max < value)
+	if (min > value || max < value)
 		return(max);
 	return(value_location_b(b, b->values, value));
 }
@@ -70,7 +68,7 @@ int	optimisation(p_s *data, stack *a, stack *b)
 	count_min = INT_MAX;
 	x = 0;
 
-	while (x < count_min && index != a->bottom)
+	while (x < (count_min - 1) && index != a->bottom)
 	{
 		current_count = count_operations(data, b, a->values[index]);
 		if (count_min > current_count)
@@ -83,7 +81,7 @@ int	optimisation(p_s *data, stack *a, stack *b)
 	}
 	index = a->bottom;
 	x = 0;
-	while (x < count_min && index != a->top)
+	while (x < (count_min - 1) && index != a->top)
 	{
 		current_count = count_operations(data, b, a->values[index]);
 		if (count_min > current_count)

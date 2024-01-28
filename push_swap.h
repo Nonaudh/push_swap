@@ -26,12 +26,17 @@ typedef struct push_swap
 {
 	stack a;
 	stack b;
+	char **tab;
+	bool tab_to_free;
 } p_s;
 
 int	    main(int argc, char *argv[]);
 void	init_data(p_s *data, int argc, char *argv[]);
 void	init_stack(stack *stck, int size);
 void	fill_the_stack(p_s *data, stack *a, int size, char *argv[]);
+
+int		count_arg(char *arg, char c);
+void	free_the_tab(char **tab, int argc);
 
 void	check_valid_arg(p_s *data, char *arg, int *tab);
 void	check_duplicate(p_s *data, int *tab, int size);
@@ -103,5 +108,11 @@ void	ex_third_strategy(p_s *data, stack *a, stack *b, int index_src, int index_d
 void	ex_fourth_strategy(p_s *data, stack *a, stack *b, int value_src, int value_dst);
 
 void	final_push(p_s *data, stack *a, stack *b);
+
+void	locate_and_push_to_a(p_s *data, stack *a, int *tab_a, int value_src);
+void	push_to_a(p_s *data, stack *a, int value_dst);
+int		value_location_a(stack *a, int *tab_a, int value_src);
+void	push_to_a(p_s *data, stack *a, int value_dst);
+int strategy_b_to_a(stack *a, int value_dst);
 
 #endif

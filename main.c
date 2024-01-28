@@ -34,7 +34,10 @@ void	check_duplicate(p_s *data, int *tab, int size)
 		while (j < size)
 		{
 			if (i != j && tab[i] == tab[j])
+			{
+				free(tab);
 				error(data);
+			}
 			j++;
 		}
 	i++;
@@ -75,6 +78,8 @@ void	fill_the_stack(p_s *data, stack *a, int size, char *argv[])
 
 	i = 0;
 	tab = malloc(sizeof(int) * size);
+	if (!tab)
+		exit(EXIT_FAILURE);
 
 	while (i < size)
 	{
@@ -92,6 +97,8 @@ void	fill_the_stack(p_s *data, stack *a, int size, char *argv[])
 void	init_stack(stack *stck, int size)
 {
 	stck->values = malloc(sizeof(int) * size);
+	if (!stck->values)
+		exit(EXIT_FAILURE);
 	stck->bottom = 0;
 	stck->top = 0;
 	stck->size = size;
@@ -100,8 +107,7 @@ void	init_stack(stack *stck, int size)
 
 void	init_data(p_s *data, int argc, char *argv[])
 {
-	argc--;
-	argv++;
+	
 	init_stack(&data->a, argc);
 	init_stack(&data->b, argc);
 	fill_the_stack(data, &data->a, argc, argv);
@@ -109,12 +115,25 @@ void	init_data(p_s *data, int argc, char *argv[])
 
 int	main(int argc, char *argv[])
 {
-	p_s	data;
+	p_s		data;
 
-	init_data(&data, argc, argv);
+	if (argc == 2)
+	{
+		argc = count_arg(argv[1], ' ');
+		data.tab = ft_split(argv[1], ' ');
+		if (!data.tab)
+			exit(EXIT_FAILURE);
+		data.tab_to_free = true;
+		init_data(&data, argc, data.tab);
+	}
+	else
+	{
+		argc--;
+		argv++;
+		data.tab_to_free = false;
+		init_data(&data, argc, argv);
+	}
 	sort(&data);
-	if(is_a_sorted(&data.a))
-		ft_printf("ok\n");
 	free_data(&data);
 	return (1);
 }

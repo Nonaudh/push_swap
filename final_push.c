@@ -17,21 +17,23 @@ int	value_location_a(stack *a, int *tab_a, int value_src)
 		i = index_up(a, i);
 		x++;
 	}
-	return (-1);
+	exit(EXIT_FAILURE);
 }
 
-int	locate_value_a(stack *a, int *tab_a, int value_src)
+
+void	locate_and_push_to_a(p_s *data, stack *a, int *tab_a, int value_src)
 {
 	int	min;
 	int	max;
+	int	value_dst;
 
 	min = value_min(a);
-	if (min > value_src)
-		return(min);
 	max = value_max(a);
-	if (max < value_src)
-		return(value_min(a));
-	return(value_location_a(a, tab_a, value_src));
+	if (min > value_src || max < value_src)
+		value_dst = min;
+	else
+		value_dst = value_location_a(a, tab_a, value_src);
+	push_to_a(data, a, value_dst);
 }
 
 int strategy_b_to_a(stack *a, int value_dst)
@@ -42,14 +44,13 @@ int strategy_b_to_a(stack *a, int value_dst)
 
 	i = a->top;
 	count_1 = 0;
-	count_2 = 0;
+	count_2 = 1;
 	while (a->values[i] != value_dst)
 	{
 		count_1++;
 		i = index_down(a, i);
 	}
 	i = a->bottom;
-	count_2++;
 	while (a->values[i] != value_dst)
 	{
 		count_2++;
@@ -76,15 +77,6 @@ void	push_to_a(p_s *data, stack *a, int value_dst)
 	push_a(data);
 }
 
-void    align_and_push(p_s *data, stack *a, int value_src)
-{
-	int value_dst;
-
-	value_dst = locate_value_a(a, a->values, value_src);
-	push_to_a(data, a, value_dst);
-	
-}
-
 void	last_rotation_a(p_s *data, stack *a)
 {
 	int	strategy;
@@ -105,7 +97,7 @@ void	last_rotation_a(p_s *data, stack *a)
 void    final_push(p_s *data, stack *a, stack *b)
 {
 	while (b->num_entries != 0)
-		align_and_push(data, a, b->values[b->top]);
+		locate_and_push_to_a(data, a, a->values, b->values[b->top]);
 
 	last_rotation_a(data, a);
 }

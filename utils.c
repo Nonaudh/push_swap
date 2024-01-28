@@ -25,6 +25,8 @@ void	error(p_s *data)
 
 void	free_data(p_s *data)
 {
+	if (data->tab_to_free)
+		free_the_tab(data->tab, (data->a.size));
 	free(data->a.values);
 	free(data->b.values);
 }

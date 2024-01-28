@@ -88,3 +88,32 @@ int	value_min(stack *stck)
 	}
 	return(min);
 }
+
+int	count_arg(char *arg, char c)
+{
+	int	x;
+	int	i;
+
+	x = 0;
+	i = 0;
+	while (arg[i])
+	{
+		if (arg[i] != c && (arg[i + 1] == c || arg[i + 1] == '\0'))
+			x++;
+		i++;
+	}
+	return (x);
+}
+
+void	free_the_tab(char **tab, int argc)
+{
+	int	i;
+
+	i = 0;
+	while (i < argc)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}

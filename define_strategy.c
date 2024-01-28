@@ -26,9 +26,7 @@ int first_strategy(stack *a, stack *b, int value_src, int value_dst)
 		j = index_down(a, j);
 		count++;
 	}
-	if (a->values[i] == value_src && b->values[j] == value_dst)
-		return (count);
-	return (INT_MAX);
+	return (count);
 }
 
 int second_strategy(stack *a, stack *b, int value_src, int value_dst)
@@ -51,9 +49,7 @@ int second_strategy(stack *a, stack *b, int value_src, int value_dst)
 		j = index_up(a, j);
 		count++;
 	}
-	if (a->values[i] == value_src && b->values[j] == value_dst)
-		return (count);
-	return (INT_MAX);
+	return (count);
 }
 
 int third_strategy(stack *a, stack *b, int value_src, int value_dst)
@@ -76,9 +72,8 @@ int third_strategy(stack *a, stack *b, int value_src, int value_dst)
 		j = index_down(a, j);
 		count++;
 	}
-	if (a->values[i] == value_src && b->values[j] == value_dst)
-		return (count);
-	return (INT_MAX);
+	return (count);
+
 }
 
 int fourth_strategy(stack *a, stack *b, int value_src, int value_dst)
@@ -107,9 +102,8 @@ int fourth_strategy(stack *a, stack *b, int value_src, int value_dst)
 		j = index_up(a, j);
 		count++;
 	}
-	if (a->values[i] == value_src && b->values[j] == value_dst)
-		return (count);
-	return (INT_MAX);
+	return (count);
+	
 }
 
 int	define_strategy(stack *a, stack *b, int value_src, int value_dst, int mode)
