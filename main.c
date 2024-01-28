@@ -126,14 +126,17 @@ int	main(int argc, char *argv[])
 		data.tab_to_free = true;
 		init_data(&data, argc, data.tab);
 	}
-	else
+	else if (argc > 2)
 	{
 		argc--;
 		argv++;
 		data.tab_to_free = false;
 		init_data(&data, argc, argv);
 	}
-	sort(&data);
-	free_data(&data);
+	if (argc > 1)
+	{
+		sort(&data);
+		free_data(&data);
+	}
 	return (1);
 }
