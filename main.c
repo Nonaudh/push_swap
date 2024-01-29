@@ -71,7 +71,7 @@ void	check_valid_arg(p_s *data, char *arg, int *tab)
 		error(data);
 }
 
-void	fill_the_stack(p_s *data, stack *a, int size, char *argv[])
+void	fill_the_stack(p_s *data, stack *a, int size, char **argv)
 {
 	int	*tab;
 	int	i;
@@ -105,7 +105,7 @@ void	init_stack(stack *stck, int size)
 	stck->num_entries = 0;
 }
 
-void	init_data(p_s *data, int argc, char *argv[])
+void	init_data(p_s *data, int argc, char **argv)
 {
 	
 	init_stack(&data->a, argc);
@@ -113,7 +113,7 @@ void	init_data(p_s *data, int argc, char *argv[])
 	fill_the_stack(data, &data->a, argc, argv);
 }
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
 	p_s		data;
 

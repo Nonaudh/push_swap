@@ -30,10 +30,10 @@ typedef struct push_swap
 	bool tab_to_free;
 } p_s;
 
-int	    main(int argc, char *argv[]);
-void	init_data(p_s *data, int argc, char *argv[]);
+int	    main(int argc, char **argv);
+void	init_data(p_s *data, int argc, char **argv);
 void	init_stack(stack *stck, int size);
-void	fill_the_stack(p_s *data, stack *a, int size, char *argv[]);
+void	fill_the_stack(p_s *data, stack *a, int size, char **argv);
 
 int		count_arg(char *arg, char c);
 void	free_the_tab(char **tab, int argc);
