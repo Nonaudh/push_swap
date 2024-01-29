@@ -7,7 +7,6 @@ void	swap(stack *stck)
 	tmp = 0;
 	if (stck->num_entries <= 1)
 		return ;
-
 	tmp = stck->values[stck->top];
 	stck->values[stck->top] = stck->values[index_down(stck, stck->top)];
 	stck->values[index_down(stck, stck->top)] = tmp;

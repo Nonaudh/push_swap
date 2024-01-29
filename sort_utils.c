@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-bool	is_a_sorted(stack *a)
+bool	is_stack_sorted(stack *a)
 {
 	int	i;
 
@@ -14,7 +14,7 @@ bool	is_a_sorted(stack *a)
 	return(false);
 }
 
-int		less_move(int *count)
+int		minimum_operations(int *count)
 {
 	int min;
 	int i;
@@ -30,7 +30,7 @@ int		less_move(int *count)
 	return (min);
 }
 
-int		best_strat(int *count)
+int		best_strategy(int *count)
 {
 	int min;
 	int strat;
@@ -51,7 +51,7 @@ int		best_strat(int *count)
 	return (strat);
 }
 
-int value_max(stack *stck)
+int find_max_value(stack *stck)
 {
 	int i;
 	int x;
@@ -70,7 +70,7 @@ int value_max(stack *stck)
 	return(max);
 }
 
-int	value_min(stack *stck)
+int	find_min_value(stack *stck)
 {
 	int	i;
 	int	x;
@@ -87,33 +87,4 @@ int	value_min(stack *stck)
 		x++;
 	}
 	return(min);
-}
-
-int	count_arg(char *arg, char c)
-{
-	int	x;
-	int	i;
-
-	x = 0;
-	i = 0;
-	while (arg[i])
-	{
-		if (arg[i] != c && (arg[i + 1] == c || arg[i + 1] == '\0'))
-			x++;
-		i++;
-	}
-	return (x);
-}
-
-void	free_the_tab(char **tab, int argc)
-{
-	int	i;
-
-	i = 0;
-	while (i < argc)
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
 }

@@ -22,56 +22,7 @@ void	simplify_and_stack(int *tab, int *values, int size)
 	}
 }
 
-void	check_duplicate(p_s *data, int *tab, int size)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (j < size)
-		{
-			if (i != j && tab[i] == tab[j])
-			{
-				free(tab);
-				error(data);
-			}
-			j++;
-		}
-	i++;
-	}
-}
-
-void	check_valid_arg(p_s *data, char *arg, int *tab)
-{
-	int		i;
-	long	nb;
-
-	i = 0;
-	nb = 0;
-	while (arg[i] <= 32)
-		i++;
-	
-	if (arg[i] == '-' || arg[i] == '+')
-		i++;
-	while (arg[i])
-	{
-		if (!ft_isdigit(arg[i]))
-		{
-			free(tab);
-			error(data);
-		}
-		i++;
-	}
-
-	nb = ft_atol(arg);
-	if (nb < INT_MIN || nb > INT_MAX)
-		error(data);
-}
-
-void	fill_the_stack(p_s *data, stack *a, int size, char **argv)
+void	check_values(p_s *data, stack *a, int size, char **argv)
 {
 	int	*tab;
 	int	i;
@@ -80,7 +31,6 @@ void	fill_the_stack(p_s *data, stack *a, int size, char **argv)
 	tab = malloc(sizeof(int) * size);
 	if (!tab)
 		exit(EXIT_FAILURE);
-
 	while (i < size)
 	{
 		check_valid_arg(data, argv[i], tab);
@@ -110,7 +60,7 @@ void	init_data(p_s *data, int argc, char **argv)
 	
 	init_stack(&data->a, argc);
 	init_stack(&data->b, argc);
-	fill_the_stack(data, &data->a, argc, argv);
+	check_values(data, &data->a, argc, argv);
 }
 
 int	main(int argc, char **argv)

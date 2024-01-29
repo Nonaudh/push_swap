@@ -1,38 +1,19 @@
 #include "push_swap.h"
 
-int	value_location_a(stack *a, int *tab_a, int value_src)
+void	last_rotation_a(p_s *data, stack *a)
 {
-	int	i;
-	int	x;
-
-	i = a->bottom;
-	x = 0;
-
-	if (value_src < tab_a[a->top] && value_src > tab_a[i])
-			return (tab_a[a->top]);
-	while (x != (a->num_entries))
-	{
-		if (value_src < tab_a[i] && value_src > tab_a[index_up(a, i)])
-			return (tab_a[i]);
-		i = index_up(a, i);
-		x++;
-	}
-	exit(EXIT_FAILURE);
-}
-
-void	locate_and_push_to_a(p_s *data, stack *a, int *tab_a, int value_src)
-{
+	int	strategy;
 	int	min;
-	int	max;
-	int	value_dst;
 
-	min = value_min(a);
-	max = value_max(a);
-	if (min > value_src || max < value_src)
-		value_dst = min;
-	else
-		value_dst = value_location_a(a, tab_a, value_src);
-	push_to_a(data, a, value_dst);
+	min = find_min_value(a);
+	strategy = strategy_b_to_a(a, min);
+	while (a->values[a->top] != min)
+	{
+		if (strategy == STRAT_1)
+			rotate_a(data);
+		if (strategy == STRAT_2)
+			r_rotate_a(data);
+	}
 }
 
 int strategy_b_to_a(stack *a, int value_dst)
@@ -56,47 +37,57 @@ int strategy_b_to_a(stack *a, int value_dst)
 		i = index_up(a, i);
 	}
 	if (count_1 <= count_2)
-		return (1);
-	return (2);
+		return (STRAT_1);
+	return (STRAT_2);
 }
 
-void	push_to_a(p_s *data, stack *a, int value_dst)
+int	value_location_a(stack *a, int *tab_a, int value_src)
 {
+	int	i;
+	int	x;
+
+	i = a->bottom;
+	x = 0;
+
+	if (value_src < tab_a[a->top] && value_src > tab_a[i])
+			return (tab_a[a->top]);
+	while (x != (a->num_entries))
+	{
+		if (value_src < tab_a[i] && value_src > tab_a[index_up(a, i)])
+			return (tab_a[i]);
+		i = index_up(a, i);
+		x++;
+	}
+	exit(EXIT_FAILURE);
+}
+
+void	push_to_a(p_s *data, stack *a, int *tab_a, int value_src)
+{
+	int	min;
+	int	max;
+	int	value_dst;
 	int strategy;
 
+	min = find_min_value(a);
+	max = find_max_value(a);
+	if (min > value_src || max < value_src)
+		value_dst = min;
+	else
+		value_dst = value_location_a(a, tab_a, value_src);
 	strategy = strategy_b_to_a(a, value_dst);
-
 	while (a->values[a->top] != value_dst)
 	{
-		if (strategy == 1)
+		if (strategy == STRAT_1)
 			rotate_a(data);
-		if (strategy == 2)
+		if (strategy == STRAT_2)
 			r_rotate_a(data);
 	}
 	push_a(data);
 }
 
-void	last_rotation_a(p_s *data, stack *a)
-{
-	int	strategy;
-	int	min;
-
-	min = value_min(a);
-	strategy = strategy_b_to_a(a, min);
-
-	while (a->values[a->top] != min)
-	{
-		if (strategy == 1)
-			rotate_a(data);
-		if (strategy == 2)
-			r_rotate_a(data);
-	}
-}
-
 void    final_push(p_s *data, stack *a, stack *b)
 {
 	while (b->num_entries != 0)
-		locate_and_push_to_a(data, a, a->values, b->values[b->top]);
-
+		push_to_a(data, a, a->values, b->values[b->top]);
 	last_rotation_a(data, a);
 }

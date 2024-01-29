@@ -4,16 +4,12 @@ void	push(stack *src, stack *dst)
 {
 	if(stack_empty(src))
 		return ;
-
 	if (!stack_empty(dst))
-		dst->top = index_up(dst, dst->top);
-	
+		dst->top = index_up(dst, dst->top);	
 	dst->values[dst->top] = src->values[src->top];
-	
 	src->top = index_down(src, src->top);
 	src->num_entries--;
 	dst->num_entries++;
-
 	if (stack_empty(src))
 	{
 		src->bottom = 0;

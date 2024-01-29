@@ -10,8 +10,10 @@
 
 #define COUNT 1
 #define STRAT 2
-
-#include <stdio.h> ///////|to_delete|////////
+#define STRAT_1 1
+#define STRAT_2 2
+#define STRAT_3 3
+#define STRAT_4 4
 
 typedef struct s_stack
 {
@@ -33,7 +35,7 @@ typedef struct push_swap
 int	    main(int argc, char **argv);
 void	init_data(p_s *data, int argc, char **argv);
 void	init_stack(stack *stck, int size);
-void	fill_the_stack(p_s *data, stack *a, int size, char **argv);
+void	check_values(p_s *data, stack *a, int size, char **argv);
 
 int		count_arg(char *arg, char c);
 void	free_the_tab(char **tab, int argc);
@@ -41,8 +43,6 @@ void	free_the_tab(char **tab, int argc);
 void	check_valid_arg(p_s *data, char *arg, int *tab);
 void	check_duplicate(p_s *data, int *tab, int size);
 void	simplify_and_stack(int *tab, int *values, int size);
-
-void	print_stack(stack *stck); ///////|to_delete|////////
 
 int		index_down(stack *stck, int index);
 int		index_up(stack *stck, int index);
@@ -73,10 +73,9 @@ void	r_rotate_b(p_s *data);
 void	r_rotate_ab(p_s *data);
 
 void    sort(p_s *data);
-bool	is_a_sorted(stack *a);
+bool	is_stack_sorted(stack *a);
 
-void	sort_three_a(p_s *data, stack *a);
-void	sort_three_b(p_s *data, stack *b);
+void	sort_three(p_s *data, stack *a);
 
 void    sort_two(p_s *data, stack *a);
 
@@ -84,14 +83,14 @@ void	sort_five(p_s *data, stack *a);
 
 void	sort_hundred(p_s *data, stack *a, stack *b);
 void    push_to_b(p_s *data, stack *a, stack *b);
-int		optimisation(p_s *data, stack *a, stack *b);
+int		find_value_opti(p_s *data, stack *a, stack *b);
+int		find_value_dst(stack *b, int value);
 int		count_operations(p_s *data, stack *b, int value);
 void	align_dst_and_src(p_s *data, stack *a, stack *b, int value_src, int value_dst);
-int		find_value_dst(stack *b, int value);
 int		value_location_b(stack *b, int *tab_b, int value);
 
-int		value_min(stack *stck);
-int		value_max(stack *stck);
+int		find_min_value(stack *stck);
+int		find_max_value(stack *stck);
 
 int		define_strategy(stack *a, stack *b, int index_src, int index_dst, int mode);
 int 	first_strategy(stack *a, stack *b, int index_src, int index_dst);
@@ -99,8 +98,8 @@ int 	second_strategy(stack *a, stack *b, int index_src, int index_dst);
 int 	third_strategy(stack *a, stack *b, int value_src, int value_dst);
 int 	fourth_strategy(stack *a, stack *b, int value_src, int value_dst);
 
-int		less_move(int *count);
-int		best_strat(int *count);
+int		minimum_operations(int *count);
+int		best_strategy(int *count);
 
 void	ex_first_strategy(p_s *data, stack *a, stack *b, int index_src, int index_dst);
 void	ex_second_strategy(p_s *data, stack *a, stack *b, int value_src, int value_dst);
@@ -109,10 +108,8 @@ void	ex_fourth_strategy(p_s *data, stack *a, stack *b, int value_src, int value_
 
 void	final_push(p_s *data, stack *a, stack *b);
 
-void	locate_and_push_to_a(p_s *data, stack *a, int *tab_a, int value_src);
-void	push_to_a(p_s *data, stack *a, int value_dst);
+void	push_to_a(p_s *data, stack *a, int *tab_a, int value_src);
 int		value_location_a(stack *a, int *tab_a, int value_src);
-void	push_to_a(p_s *data, stack *a, int value_dst);
 int 	strategy_b_to_a(stack *a, int value_dst);
 
 #endif
