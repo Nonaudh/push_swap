@@ -41,17 +41,17 @@ int	count_operations(p_s *data, stack *b, int value_src)
 
 int	find_value_opti(p_s *data, stack *a, stack *b)
 {
-	int index;
-	int count_min;
-	int current_count;
-	int x;
-	int	value_opti;
-	int	from_top;
+	int 	index;
+	int 	count_min;
+	int		current_count;
+	int 	x;
+	int		value_opti;
+	bool	from_top;
 
 	index = a->top;
 	count_min = INT_MAX;
 	x = 0;
-	from_top = 1;
+	from_top = true;
 
 	while (x < count_min && x != a->num_entries)
 		{
@@ -66,38 +66,12 @@ int	find_value_opti(p_s *data, stack *a, stack *b)
 			else
 				index= index_up(a, index);
 			x++;
-			if (x == count_min && from_top)
+			if ((x == count_min || x == a->num_entries) && from_top)
 			{
 				index = a->bottom;
+				from_top = false;
 				x = 0;
-				from_top = 0;
 			}
 		}
-
-
-	/*while (x < (count_min - 1) && index != a->bottom)
-	{
-		current_count = count_operations(data, b, a->values[index]);
-		if (count_min > current_count)
-		{
-			count_min = current_count;
-			value_opti = a->values[index];
-		}
-		index = index_down(a, index);
-		x++;
-	}
-	index = a->bottom;
-	x = 0;
-	while (x < (count_min - 1) && index != a->top)
-	{
-		current_count = count_operations(data, b, a->values[index]);
-		if (count_min > current_count)
-		{
-			count_min = current_count;
-			value_opti = a->values[index];
-		}
-		index = index_up(a, index);
-		x++;
-	}*/
 	return (value_opti);
 }
