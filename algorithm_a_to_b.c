@@ -16,7 +16,7 @@ int	define_strategy(stack *a, stack *b, int value_src, int value_dst, int mode)
 	return (0);
 }
 
-void	align_dst_and_src(p_s *data, stack *a, stack *b, int value_src, int value_dst)
+void	align_a_and_b(p_s *data, stack *a, stack *b, int value_src, int value_dst)
 {
 	int	strategy;
 
@@ -46,12 +46,36 @@ int	find_value_opti(p_s *data, stack *a, stack *b)
 	int current_count;
 	int x;
 	int	value_opti;
+	int	from_top;
 
 	index = a->top;
 	count_min = INT_MAX;
 	x = 0;
+	from_top = 1;
 
-	while (x < (count_min - 1) && index != a->bottom)
+	while (x < count_min && x != a->num_entries)
+		{
+			current_count = count_operations(data, b, a->values[index]);
+			if (count_min > current_count)
+			{
+				count_min = current_count;
+				value_opti = a->values[index];
+			}
+			if(from_top)
+				index = index_down(a, index);
+			else
+				index= index_up(a, index);
+			x++;
+			if (x == count_min && from_top)
+			{
+				index = a->bottom;
+				x = 0;
+				from_top = 0;
+			}
+		}
+
+
+	/*while (x < (count_min - 1) && index != a->bottom)
 	{
 		current_count = count_operations(data, b, a->values[index]);
 		if (count_min > current_count)
@@ -74,6 +98,6 @@ int	find_value_opti(p_s *data, stack *a, stack *b)
 		}
 		index = index_up(a, index);
 		x++;
-	}
+	}*/
 	return (value_opti);
 }

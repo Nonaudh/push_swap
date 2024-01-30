@@ -41,27 +41,23 @@ int strategy_b_to_a(stack *a, int value_dst)
 	return (STRAT_2);
 }
 
-int	value_location_a(stack *a, int *tab_a, int value_src)
+int	value_location_a(stack *a, int value_src)
 {
 	int	i;
-	int	x;
 
 	i = a->bottom;
-	x = 0;
-
-	if (value_src < tab_a[a->top] && value_src > tab_a[i])
-			return (tab_a[a->top]);
-	while (x != (a->num_entries))
+	if (value_src < a->values[a->top] && value_src > a->values[i])
+			return (a->values[a->top]);
+	while (i != a->top)
 	{
-		if (value_src < tab_a[i] && value_src > tab_a[index_up(a, i)])
-			return (tab_a[i]);
+		if (value_src < a->values[i] && value_src > a->values[index_up(a, i)])
+			return (a->values[i]);
 		i = index_up(a, i);
-		x++;
 	}
 	exit(EXIT_FAILURE);
 }
 
-void	push_to_a(p_s *data, stack *a, int *tab_a, int value_src)
+void	push_to_a(p_s *data, stack *a, int value_src)
 {
 	int	min;
 	int	max;
@@ -73,7 +69,7 @@ void	push_to_a(p_s *data, stack *a, int *tab_a, int value_src)
 	if (min > value_src || max < value_src)
 		value_dst = min;
 	else
-		value_dst = value_location_a(a, tab_a, value_src);
+		value_dst = value_location_a(a, value_src);
 	strategy = strategy_b_to_a(a, value_dst);
 	while (a->values[a->top] != value_dst)
 	{
@@ -88,6 +84,6 @@ void	push_to_a(p_s *data, stack *a, int *tab_a, int value_src)
 void    final_push(p_s *data, stack *a, stack *b)
 {
 	while (b->num_entries != 0)
-		push_to_a(data, a, a->values, b->values[b->top]);
+		push_to_a(data, a, b->values[b->top]);
 	last_rotation_a(data, a);
 }

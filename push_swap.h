@@ -86,8 +86,8 @@ void    push_to_b(p_s *data, stack *a, stack *b);
 int		find_value_opti(p_s *data, stack *a, stack *b);
 int		find_value_dst(stack *b, int value);
 int		count_operations(p_s *data, stack *b, int value);
-void	align_dst_and_src(p_s *data, stack *a, stack *b, int value_src, int value_dst);
-int		value_location_b(stack *b, int *tab_b, int value);
+void	align_a_and_b(p_s *data, stack *a, stack *b, int value_src, int value_dst);
+int		value_location_b(stack *b, int value);
 
 int		find_min_value(stack *stck);
 int		find_max_value(stack *stck);
@@ -108,8 +108,8 @@ void	ex_fourth_strategy(p_s *data, stack *a, stack *b, int value_src, int value_
 
 void	final_push(p_s *data, stack *a, stack *b);
 
-void	push_to_a(p_s *data, stack *a, int *tab_a, int value_src);
-int		value_location_a(stack *a, int *tab_a, int value_src);
+void	push_to_a(p_s *data, stack *a, int value_src);
+int		value_location_a(stack *a, int value_src);
 int 	strategy_b_to_a(stack *a, int value_dst);
 
 #endif

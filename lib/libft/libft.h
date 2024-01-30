@@ -36,7 +36,6 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memset(void *s, int c, size_t n);
 char	**ft_split(char const *s, char c);
-int		count_word(char const *s, char c);
 char	*ft_strchr(const char *src, int c);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strlen(const char *s);
