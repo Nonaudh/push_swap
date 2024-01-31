@@ -20,8 +20,7 @@
 # include "lib/libft/libft.h"
 # include "lib/ft_printf/ft_printf.h"
 
-# define COUNT 1
-# define STRAT 2
+# define STRATS 4
 # define STRAT_1 1
 # define STRAT_2 2
 # define STRAT_3 3
@@ -100,12 +99,13 @@ int		value_opti_from_bottom(t_stack *a, t_stack *b, int val_opti, int c_min);
 int		find_value_dst(t_stack *b, int value);
 int		count_operations(t_stack *a, t_stack *b, int value);
 void	align_a_and_b(t_stack *a, t_stack *b, int value_src, int value_dst);
-int		value_location_b(t_stack *b, int value);
+int		value_location_in_b(t_stack *b, int value);
 
 int		find_min_value(t_stack *stck);
 int		find_max_value(t_stack *stck);
 
-int		define_strategy(t_stack *a, t_stack *b, int index_src, int index_dst, int mode);
+int		define_strategy(t_stack *a, t_stack *b, int index_src, int index_dst);
+int 	numbers_of_operations(t_stack *a, t_stack *b, int value_src, int value_dst);
 int		first_strategy(t_stack *a, t_stack *b, int index_src, int index_dst);
 int		second_strategy(t_stack *a, t_stack *b, int index_src, int index_dst);
 int		third_strategy(t_stack *a, t_stack *b, int value_src, int value_dst);

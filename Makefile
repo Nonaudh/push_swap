@@ -2,29 +2,42 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 
-NAME = ./push_swap
+SOURCES = algorithm_a_to_b.c check_arg.c error_and_free.c execute_strategy.c \
+final_push.c op_push.c op_rotate.c op_r_rotate.c op_swap.c \
+push_swap.c sort.c sort_hundred.c sort_utils.c stack_utils.c \
+strategies.c stragegy_utils.c
 
-SOURCES = algorithm_a_to_b.c
+OBJECTS = $(SOURCES:%.c=%.o)
 
-all : $(NAME)
+INCLUDE = -Llib/libft -lft -Llib/ft_printf -lftprintf
 
-OBJECTS = $(SOURCES:.c=.o)
+LIBFT = libft.a
+FT_PRINTF = libftprintf.a
+NAME = push_swap
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $?
 
-$(NAME) : $(OBJECTS)
-	(cd lib/libft; make all)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME) -L /libft -lft
+$(NAME) : $(LIBFT) $(FT_PRINTF) $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME) $(INCLUDE)
 
+$(LIBFT):
+	$(MAKE) -C lib/ft_printf make all
+
+$(FT_PRINTF):
+	$(MAKE) -C lib/ft_printf make all
+
+all : $(LIBFT) $(FT_PRINTF) $(NAME)
 
 clean :
-	(cd lib/libft; make clean)
-	rm -f $(OBJECTS) $(OBJECTS_BONUS)
+	rm -f $(OBJECTS)
+	$(MAKE) -C lib/libft clean
+	$(MAKE) -C lib/ft_printf clean
 
 fclean : clean
-	(cd lib/libft; make fclean)
 	rm -f $(NAME)
+	$(MAKE) -C lib/libft fclean
+	$(MAKE) -C lib/ft_printf fclean
 
 re: fclean all
 

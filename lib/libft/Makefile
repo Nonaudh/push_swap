@@ -32,18 +32,15 @@ OBJECTS_BONUS = $(SOURCES_BONUS:.c=.o)
 	$(CC) -c $(CFLAGS) $?
 
 $(NAME) : $(NAME) $(OBJECTS)
-	(cd ../ft_printf; make all)
 	ar -rcs $(NAME) $(OBJECTS)
 
 bonus : $(OBJECTS) $(OBJECTS_BONUS)
 	ar -rcs $(NAME) $(OBJECTS) $(OBJECTS_BONUS)
 
 clean :
-	(cd ../ft_printf; make clean)
 	rm -f $(OBJECTS) $(OBJECTS_BONUS)
 
 fclean : clean
-	(cd ../ft_printf; make fclean)
 	rm -f $(NAME)
 
 re: fclean all

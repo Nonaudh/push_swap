@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	value_location_b(t_stack *b, int value)
+int	value_location_in_b(t_stack *b, int value)
 {
 	int	i;
 
@@ -37,7 +37,7 @@ int	find_value_dst(t_stack *b, int value)
 	max = find_max_value(b);
 	if (min > value || max < value)
 		return (max);
-	return (value_location_b(b, value));
+	return (value_location_in_b(b, value));
 }
 
 void	push_to_b(t_stack *a, t_stack *b)

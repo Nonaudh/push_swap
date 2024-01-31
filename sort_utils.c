@@ -26,43 +26,6 @@ bool	is_stack_sorted(t_stack *stck)
 	return (false);
 }
 
-int	minimum_operations(int *count, int size)
-{
-	int	min;
-	int	i;
-
-	min = INT_MAX;
-	i = 0;
-	while (i < size)
-	{
-		if (count[i] < min)
-			min = count[i];
-		i++;
-	}
-	return (min);
-}
-
-int	best_strategy(int *count, int size)
-{
-	int	min;
-	int	strat;
-	int	i;
-
-	min = INT_MAX;
-	i = 0;
-	strat = 1;
-	while (i < size)
-	{
-		if (count[i] < min)
-		{
-			strat = (i + 1);
-			min = count[i];
-		}
-		i++;
-	}
-	return (strat);
-}
-
 int	find_max_value(t_stack *stck)
 {
 	int	i;
