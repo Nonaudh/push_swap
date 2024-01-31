@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   op_push.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahuge <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/31 13:09:48 by ahuge             #+#    #+#             */
+/*   Updated: 2024/01/31 13:09:52 by ahuge            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	push(stack *src, stack *dst)
+void	push(t_stack *src, t_stack *dst)
 {
-	if(stack_empty(src))
+	if (stack_empty(src))
 		return ;
 	if (!stack_empty(dst))
-		dst->top = index_up(dst, dst->top);	
+		dst->top = index_up(dst, dst->top);
 	dst->values[dst->top] = src->values[src->top];
 	src->top = index_down(src, src->top);
 	src->num_entries--;
@@ -17,14 +29,14 @@ void	push(stack *src, stack *dst)
 	}
 }
 
-void	push_a(p_s *data)
+void	push_a(t_stack *a, t_stack *b)
 {
-	push(&data->b, &data->a);
+	push(b, a);
 	ft_printf("pa\n");
 }
 
-void	push_b(p_s *data)
+void	push_b(t_stack *a, t_stack *b)
 {
-	push(&data->a, &data->b);
+	push(a, b);
 	ft_printf("pb\n");
 }

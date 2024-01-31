@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   op_swap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahuge <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/31 13:04:08 by ahuge             #+#    #+#             */
+/*   Updated: 2024/01/31 13:04:10 by ahuge            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	swap(stack *stck)
+void	swap(t_stack *stck)
 {
-	int tmp;
+	int	tmp;
 
 	tmp = 0;
 	if (stck->num_entries <= 1)
@@ -12,21 +24,21 @@ void	swap(stack *stck)
 	stck->values[index_down(stck, stck->top)] = tmp;
 }
 
-void	swap_a(p_s *data)
+void	swap_a(t_stack *a)
 {
-	swap(&data->a);
+	swap(a);
 	ft_printf("sa\n");
 }
 
-void	swap_b(p_s *data)
+void	swap_b(t_stack *b)
 {
-	swap(&data->b);
+	swap(b);
 	ft_printf("sb\n");
 }
 
-void	swap_ab(p_s *data)
+void	swap_ab(t_stack *a, t_stack *b)
 {
-	swap(&data->a);
-	swap(&data->b);
+	swap(a);
+	swap(b);
 	ft_printf("ss\n");
 }

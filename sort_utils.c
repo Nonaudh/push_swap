@@ -1,61 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahuge <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/31 13:04:58 by ahuge             #+#    #+#             */
+/*   Updated: 2024/01/31 13:05:00 by ahuge            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-bool	is_stack_sorted(stack *a)
+bool	is_stack_sorted(t_stack *stck)
 {
 	int	i;
 
-	i = a->bottom;
-	while (i != index_down(a, a->bottom) && a->values[i] > a->values[index_up(a, i)])
+	i = stck->bottom;
+	while (i != stck->top && stck->values[i] > stck->values[index_up(stck, i)])
 	{
-		i = index_up(a, i);
+		i = index_up(stck, i);
 	}
-	if (i == index_down(a, a->bottom))
-		return(true);
-	return(false);
+	if (i == stck->top)
+		return (true);
+	return (false);
 }
 
-int		minimum_operations(int *count)
+int	minimum_operations(int *count, int size)
 {
-	int min;
-	int i;
+	int	min;
+	int	i;
 
 	min = INT_MAX;
 	i = 0;
-	while (i < 4)
+	while (i < size)
 	{
-		if(count[i] < min)
+		if (count[i] < min)
 			min = count[i];
 		i++;
 	}
 	return (min);
 }
 
-int		best_strategy(int *count)
+int	best_strategy(int *count, int size)
 {
-	int min;
-	int strat;
-	int i;
+	int	min;
+	int	strat;
+	int	i;
 
 	min = INT_MAX;
 	i = 0;
 	strat = 1;
-	while (i < 4)
+	while (i < size)
 	{
-		if(count[i] < min)
+		if (count[i] < min)
 		{
 			strat = (i + 1);
 			min = count[i];
 		}
 		i++;
-	}	
+	}
 	return (strat);
 }
 
-int find_max_value(stack *stck)
+int	find_max_value(t_stack *stck)
 {
-	int i;
-	int x;
-	int max;
+	int	i;
+	int	x;
+	int	max;
 
 	i = stck->bottom;
 	x = 0;
@@ -67,10 +79,10 @@ int find_max_value(stack *stck)
 		i = index_up(stck, i);
 		x++;
 	}
-	return(max);
+	return (max);
 }
 
-int	find_min_value(stack *stck)
+int	find_min_value(t_stack *stck)
 {
 	int	i;
 	int	x;
@@ -86,5 +98,5 @@ int	find_min_value(stack *stck)
 		i = index_up(stck, i);
 		x++;
 	}
-	return(min);
+	return (min);
 }

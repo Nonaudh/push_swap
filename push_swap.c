@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahuge <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/31 13:14:47 by ahuge             #+#    #+#             */
+/*   Updated: 2024/01/31 13:14:48 by ahuge            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	simplify_and_stack(int *tab, int *values, int size)
@@ -22,7 +34,7 @@ void	simplify_and_stack(int *tab, int *values, int size)
 	}
 }
 
-void	check_values(p_s *data, stack *a, int size, char **argv)
+void	check_values(t_ps *data, t_stack *a, int size, char **argv)
 {
 	int	*tab;
 	int	i;
@@ -44,7 +56,7 @@ void	check_values(p_s *data, stack *a, int size, char **argv)
 	a->num_entries = size;
 }
 
-void	init_stack(stack *stck, int size)
+void	init_stack(t_stack *stck, int size)
 {
 	stck->values = malloc(sizeof(int) * size);
 	if (!stck->values)
@@ -55,9 +67,8 @@ void	init_stack(stack *stck, int size)
 	stck->num_entries = 0;
 }
 
-void	init_data(p_s *data, int argc, char **argv)
+void	init_data(t_ps *data, int argc, char **argv)
 {
-	
 	init_stack(&data->a, argc);
 	init_stack(&data->b, argc);
 	check_values(data, &data->a, argc, argv);
@@ -65,7 +76,7 @@ void	init_data(p_s *data, int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	p_s		data;
+	t_ps	data;
 
 	if (argc == 2)
 	{

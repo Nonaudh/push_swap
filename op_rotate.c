@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   op_rotate.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahuge <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/31 13:01:26 by ahuge             #+#    #+#             */
+/*   Updated: 2024/01/31 13:01:29 by ahuge            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	rotate(stack *stck)
+void	rotate(t_stack *stck)
 {
 	int	tmp;
 
@@ -18,21 +30,21 @@ void	rotate(stack *stck)
 	}
 }
 
-void	rotate_a(p_s *data)
+void	rotate_a(t_stack *a)
 {
-	rotate(&data->a);
+	rotate(a);
 	ft_printf("ra\n");
 }
 
-void	rotate_b(p_s *data)
+void	rotate_b(t_stack *b)
 {
-	rotate(&data->b);
+	rotate(b);
 	ft_printf("rb\n");
 }
 
-void	rotate_ab(p_s *data)
+void	rotate_ab(t_stack *a, t_stack *b)
 {
-	rotate(&data->a);
-	rotate(&data->b);
+	rotate(a);
+	rotate(b);
 	ft_printf("rr\n");
 }

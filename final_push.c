@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   final_push.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahuge <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/31 13:04:48 by ahuge             #+#    #+#             */
+/*   Updated: 2024/01/31 13:04:49 by ahuge            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	last_rotation_a(p_s *data, stack *a)
+void	last_rotation_a(t_stack *a)
 {
 	int	strategy;
 	int	min;
@@ -10,17 +22,17 @@ void	last_rotation_a(p_s *data, stack *a)
 	while (a->values[a->top] != min)
 	{
 		if (strategy == STRAT_1)
-			rotate_a(data);
+			rotate_a(a);
 		if (strategy == STRAT_2)
-			r_rotate_a(data);
+			r_rotate_a(a);
 	}
 }
 
-int strategy_b_to_a(stack *a, int value_dst)
+int	strategy_b_to_a(t_stack *a, int value_dst)
 {
 	int	i;
-	int count_1;
-	int count_2;
+	int	count_1;
+	int	count_2;
 
 	i = a->top;
 	count_1 = 0;
@@ -41,13 +53,13 @@ int strategy_b_to_a(stack *a, int value_dst)
 	return (STRAT_2);
 }
 
-int	value_location_a(stack *a, int value_src)
+int	value_location_a(t_stack *a, int value_src)
 {
 	int	i;
 
 	i = a->bottom;
 	if (value_src < a->values[a->top] && value_src > a->values[i])
-			return (a->values[a->top]);
+		return (a->values[a->top]);
 	while (i != a->top)
 	{
 		if (value_src < a->values[i] && value_src > a->values[index_up(a, i)])
@@ -57,12 +69,12 @@ int	value_location_a(stack *a, int value_src)
 	exit(EXIT_FAILURE);
 }
 
-void	push_to_a(p_s *data, stack *a, int value_src)
+void	push_to_a(t_stack *a, t_stack *b, int value_src)
 {
 	int	min;
 	int	max;
 	int	value_dst;
-	int strategy;
+	int	strategy;
 
 	min = find_min_value(a);
 	max = find_max_value(a);
@@ -74,16 +86,16 @@ void	push_to_a(p_s *data, stack *a, int value_src)
 	while (a->values[a->top] != value_dst)
 	{
 		if (strategy == STRAT_1)
-			rotate_a(data);
+			rotate_a(a);
 		if (strategy == STRAT_2)
-			r_rotate_a(data);
+			r_rotate_a(a);
 	}
-	push_a(data);
+	push_a(a, b);
 }
 
-void    final_push(p_s *data, stack *a, stack *b)
+void	final_push(t_stack *a, t_stack *b)
 {
 	while (b->num_entries != 0)
-		push_to_a(data, a, b->values[b->top]);
-	last_rotation_a(data, a);
+		push_to_a(a, b, b->values[b->top]);
+	last_rotation_a(a);
 }

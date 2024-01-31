@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   strategies.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahuge <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/31 13:03:33 by ahuge             #+#    #+#             */
+/*   Updated: 2024/01/31 13:03:35 by ahuge            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int first_strategy(stack *a, stack *b, int value_src, int value_dst)
+int	first_strategy(t_stack *a, t_stack *b, int value_src, int value_dst)
 {
 	int	i;
 	int	j;
@@ -12,7 +24,7 @@ int first_strategy(stack *a, stack *b, int value_src, int value_dst)
 	while (a->values[i] != value_src && b->values[j] != value_dst)
 	{
 		i = index_down(a, i);
-		j= index_down(b, j);
+		j = index_down(b, j);
 		count++;
 	}
 	while (a->values[i] != value_src)
@@ -28,7 +40,7 @@ int first_strategy(stack *a, stack *b, int value_src, int value_dst)
 	return (count);
 }
 
-int second_strategy(stack *a, stack *b, int value_src, int value_dst)
+int	second_strategy(t_stack *a, t_stack *b, int value_src, int value_dst)
 {
 	int	i;
 	int	j;
@@ -50,7 +62,7 @@ int second_strategy(stack *a, stack *b, int value_src, int value_dst)
 	return (count);
 }
 
-int third_strategy(stack *a, stack *b, int value_src, int value_dst)
+int	third_strategy(t_stack *a, t_stack *b, int value_src, int value_dst)
 {
 	int	i;
 	int	j;
@@ -70,10 +82,9 @@ int third_strategy(stack *a, stack *b, int value_src, int value_dst)
 		count++;
 	}
 	return (count);
-
 }
 
-int fourth_strategy(stack *a, stack *b, int value_src, int value_dst)
+int	fourth_strategy(t_stack *a, t_stack *b, int value_src, int value_dst)
 {
 	int	i;
 	int	j;
@@ -85,7 +96,7 @@ int fourth_strategy(stack *a, stack *b, int value_src, int value_dst)
 	while (a->values[i] != value_src && b->values[j] != value_dst)
 	{
 		i = index_up(a, i);
-		j= index_up(b, j);
+		j = index_up(b, j);
 		count++;
 	}
 	while (a->values[i] != value_src)
