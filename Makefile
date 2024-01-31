@@ -7,7 +7,7 @@ src/execute_strategy.c src/final_push.c src/op_push.c src/op_rotate.c \
 src/op_r_rotate.c src/op_swap.c src/push_swap.c src/sort.c src/sort_hundred.c \
 src/sort_utils.c src/stack_utils.c src/strategies.c src/stragegy_utils.c
 
-SRC_DIR = src/
+#SRC_DIR = src/
 
 OBJECTS = $(SOURCES:%.c=%.o)
 
