@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stragegy_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahuge <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/01 11:59:16 by ahuge             #+#    #+#             */
+/*   Updated: 2024/02/01 11:59:19 by ahuge            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/push_swap.h"
 
-int numbers_of_operations(t_stack *a, t_stack *b, int value_src, int value_dst)
+int	numbers_of_op(t_stack *a, t_stack *b, int value_src, int value_dst)
 {
 	int	count[STRATS];
 
@@ -9,7 +21,6 @@ int numbers_of_operations(t_stack *a, t_stack *b, int value_src, int value_dst)
 	count[2] = third_strategy(a, b, value_src, value_dst);
 	count[3] = fourth_strategy(a, b, value_src, value_dst);
 	return (minimum_operations(count, STRATS));
-
 }
 
 int	define_strategy(t_stack *a, t_stack *b, int value_src, int value_dst)

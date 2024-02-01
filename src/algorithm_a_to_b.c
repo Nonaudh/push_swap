@@ -12,7 +12,6 @@
 
 #include "../inc/push_swap.h"
 
-
 void	align_a_and_b(t_stack *a, t_stack *b, int value_src, int value_dst)
 {
 	int	strategy;
@@ -33,7 +32,7 @@ int	count_operations(t_stack *a, t_stack *b, int value_src)
 	int	value_dst;
 
 	value_dst = find_value_dst(b, value_src);
-	return (numbers_of_operations(a, b, value_src, value_dst));
+	return (numbers_of_op(a, b, value_src, value_dst));
 }
 
 int	find_value_opti(t_stack *a, t_stack *b)

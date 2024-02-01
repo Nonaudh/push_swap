@@ -81,6 +81,8 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		argc = count_arg(argv[1], ' ');
+		if (!argc)
+			exit(EXIT_FAILURE);
 		data.tab = ft_split(argv[1], ' ');
 		if (!data.tab)
 			exit(EXIT_FAILURE);
@@ -89,7 +91,7 @@ int	main(int argc, char **argv)
 		sort(&data);
 		free_data(&data);
 	}
-	else
+	else if (argc > 2)
 	{
 		argc--;
 		argv++;

@@ -7,14 +7,10 @@ src/execute_strategy.c src/final_push.c src/op_push.c src/op_rotate.c \
 src/op_r_rotate.c src/op_swap.c src/push_swap.c src/sort.c src/sort_hundred.c \
 src/sort_utils.c src/stack_utils.c src/strategies.c src/stragegy_utils.c
 
-#SRC_DIR = src/
-
 OBJECTS = $(SOURCES:%.c=%.o)
 
 INCLUDE = -Llib/libft -lft -Llib/ft_printf -lftprintf
 
-#LIBFT = libft.a
-#FT_PRINTF = libftprintf.a
 NAME = push_swap
 
 %.o: %.c
@@ -23,13 +19,7 @@ NAME = push_swap
 $(NAME) : $(OBJECTS)
 	$(MAKE) -C lib/libft/
 	$(MAKE) -C lib/ft_printf/
-	$(CC) $(CFLAGS) $(OBJECTS) $(INCLUDE) -o $(NAME) 
-
-$(LIBFT):
-	$(MAKE) -C lib/libft/
-
-$(FT_PRINTF):
-	$(MAKE) -C lib/ft_printf/
+	$(CC) $(CFLAGS) $(OBJECTS) $(INCLUDE) -o $(NAME)
 
 all : $(LIBFT) $(FT_PRINTF) $(NAME)
 

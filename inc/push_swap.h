@@ -105,7 +105,7 @@ int		find_min_value(t_stack *stck);
 int		find_max_value(t_stack *stck);
 
 int		define_strategy(t_stack *a, t_stack *b, int index_src, int index_dst);
-int 	numbers_of_operations(t_stack *a, t_stack *b, int value_src, int value_dst);
+int		numbers_of_op(t_stack *a, t_stack *b, int value_src, int value_dst);
 int		first_strategy(t_stack *a, t_stack *b, int index_src, int index_dst);
 int		second_strategy(t_stack *a, t_stack *b, int index_src, int index_dst);
 int		third_strategy(t_stack *a, t_stack *b, int value_src, int value_dst);
