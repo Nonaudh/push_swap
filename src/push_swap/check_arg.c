@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "../../inc/push_swap.h"
 
 void	check_duplicate(t_ps *data, int *tab, int size)
 {
@@ -41,8 +41,11 @@ void	check_valid_arg(t_ps *data, char *arg, int *tab)
 
 	i = 0;
 	nb = 0;
-	while (arg[i] <= 32)
-		i++;
+	if (arg[i] <= 32)
+	{
+		free(tab);
+		error(data);
+	}
 	if (arg[i] == '-' || arg[i] == '+')
 		i++;
 	while (arg[i])

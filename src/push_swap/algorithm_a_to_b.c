@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "../../inc/push_swap.h"
 
 void	align_a_and_b(t_stack *a, t_stack *b, int value_src, int value_dst)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "../../inc/push_swap.h"
 
 int	first_strategy(t_stack *a, t_stack *b, int value_src, int value_dst)
 {

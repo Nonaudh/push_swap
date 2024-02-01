@@ -21,13 +21,13 @@ ft_print_decimal.c ft_print_hexadecimal.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
-all : $(NAME)
-
 %.o: %.c
 	$(CC) -c $(CFLAGS) $?
 
 $(NAME) : $(OBJECTS)
 	ar -rcs $(NAME) $(OBJECTS)
+
+all : $(NAME)
 
 clean :
 	rm -f $(OBJECTS)

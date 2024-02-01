@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "../../inc/push_swap.h"
 
 void	error(t_ps *data)
 {
 	free_data(data);
-	ft_printf("Error\n");
+	ft_putstr_fd("Error\n", 2);
 	exit(EXIT_FAILURE);
 }
 
