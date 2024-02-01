@@ -1,43 +1,29 @@
 #include "../../inc/checker.h"
 
-void	check_operation(void)
-{
-	// to do
-}
-
 void	execute_operation(t_ps *data, char *op)
 {
-	if (op[0] == 's' && op[1] == 'a' && op[2] == '\n')
-		swap(&data->a);
-	if (op[0] == 's' && op[1] == 'b' && op[2] == '\n')
-		swap(&data->b);
-	if (op[0] == 's' && op[1] == 's' && op[2] == '\n')
+	if (op[0] == 's')
 	{
-		swap(&data->a);
-		swap(&data->b);
+		check_swap(data, op);
+		return ;
 	}
-	if (op[0] == 'p' && op[1] == 'a' && op[2] == '\n')
-		push(&data->b, &data->a);
-	if (op[0] == 'p' && op[1] == 'b' && op[2] == '\n')
-		push(&data->a, &data->b);
-	if (op[0] == 'r' && op[1] == 'a' && op[2] == '\n')
-		rotate(&data->a);
-	if (op[0] == 'r' && op[1] == 'b' && op[2] == '\n')
-		rotate(&data->b);
-	if (op[0] == 'r' && op[1] == 'r' && op[2] == '\n')
+	if (op[0] == 'p')
 	{
-		rotate(&data->a);
-		rotate(&data->b);
+		check_push(data, op);
+		return ;
 	}
-	if (op[0] == 'r' && op[1] == 'r' && op[2] == 'a' && op[3] == '\n')
-		reverse_rotate(&data->a);
-	if (op[0] == 'r' && op[1] == 'r' && op[2] == 'b' && op[3] == '\n')
-		reverse_rotate(&data->b);
-	if (op[0] == 'r' && op[1] == 'r' && op[2] == 'r' && op[3] == '\n')
+	if (op[0] == 'r' && op[2] == '\n')
 	{
-		reverse_rotate(&data->a);
-		reverse_rotate(&data->b);
+		check_rotate(data, op);
+		return ;
 	}
+	if (op[0] == 'r' && op[1] == 'r')
+	{
+		check_reverse_rotate(data, op);
+		return ;
+	}
+	free(op);
+	error(data);
 }
 
 void    checker(t_ps *data)

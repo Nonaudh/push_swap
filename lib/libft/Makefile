@@ -23,7 +23,9 @@ ft_strchr.c ft_strjoin.c ft_strlcpy.c ft_strlen.c ft_strncmp.c \
 ft_strnstr.c ft_strrchr.c ft_substr.c ft_tolower.c ft_toupper.c \
 ft_calloc.c ft_strdup.c ft_strlcat.c ft_putchar_fd.c ft_putendl_fd.c \
 ft_putnbr_fd.c ft_putstr_fd.c ft_strmapi.c ft_striteri.c ft_strtrim.c \
-get_next_line_bonus.c get_next_line_utils_bonus.c
+../get_next_line/get_next_line_bonus.c ../get_next_line/get_next_line_utils_bonus.c \
+../ft_printf/ft_printf.c ../ft_printf/ft_print_character.c \
+../ft_printf/ft_print_decimal.c ../ft_printf/ft_print_hexadecimal.c
 
 SOURCES_BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c
 
@@ -33,14 +35,11 @@ OBJECTS = $(SOURCES:.c=.o)
 
 OBJECTS_BONUS = $(SOURCES_BONUS:.c=.o)
 
-INCLUDE = -L../ft_printf -lftprintf
-
 %.o: %.c
-	$(CC) -c $(CFLAGS) $?
+	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
 
 $(NAME) : $(OBJECTS)
-	make -C ../ft_printf
-	ar -rcs $(NAME) $(OBJECTS) $(INCLUDE)
+	ar -rcs $(NAME) $(OBJECTS)
 
 bonus : $(OBJECTS) $(OBJECTS_BONUS)
 	ar -rcs $(NAME) $(OBJECTS) $(OBJECTS_BONUS)
