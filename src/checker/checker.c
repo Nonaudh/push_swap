@@ -1,6 +1,6 @@
 #include "../../inc/checker.h"
 
-void	check_operation(char *op)
+void	check_operation(void)
 {
 	// to do
 }

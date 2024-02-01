@@ -1,4 +1,4 @@
-CC = cc -g
+CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 
@@ -20,22 +20,26 @@ OBJ_BONUS = $(SRC_BONUS:%.c=%.o)
 
 INCLUDE = -Llib/libft -lft -Llib/ft_printf -lftprintf
 
+LIBFT_PATH = lib/libft
+
+PRINTF_PATH = lib/ft_printf
+
 NAME = push_swap
 
 BONUS = checker
 
 %.o: %.c
-	$(CC) -c $< -o ${<:.c=.o} #flag
+	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
 
 $(NAME) : $(OBJ1) $(OBJ2)
-	$(MAKE) -C lib/libft/
-	$(MAKE) -C lib/ft_printf/
+	$(MAKE) -C $(LIBFT_PATH)
+	$(MAKE) -C $(PRINTF_PATH)
 	$(CC) $(CFLAGS) $(OBJ1) $(OBJ2) $(INCLUDE) -o $(NAME)
 
 $(BONUS) : $(OBJ_BONUS) $(OBJ2)
-	$(MAKE) -C lib/libft/
-	$(MAKE) -C lib/ft_printf/
-	$(CC) $(OBJ_BONUS) $(OBJ2) $(INCLUDE) -o $(BONUS)
+	$(MAKE) -C $(LIBFT_PATH)
+	$(MAKE) -C $(PRINTF_PATH)
+	$(CC) $(CFLAGS) $(OBJ_BONUS) $(OBJ2) $(INCLUDE) -o $(BONUS)
 
 all : $(NAME)
 
@@ -43,13 +47,13 @@ bonus : $(BONUS)
 
 clean :
 	rm -f $(OBJ1) $(OBJ2) $(OBJ_BONUS)
-	$(MAKE) -C lib/libft clean
-	$(MAKE) -C lib/ft_printf clean
+	$(MAKE) -C $(LIBFT_PATH) clean
+	$(MAKE) -C $(PRINTF_PATH) clean
 
 fclean : clean
 	rm -f $(NAME) $(BONUS)
-	$(MAKE) -C lib/libft fclean
-	$(MAKE) -C lib/ft_printf fclean
+	$(MAKE) -C $(LIBFT_PATH) fclean
+	$(MAKE) -C $(PRINTF_PATH) fclean
 
 re: fclean all
 

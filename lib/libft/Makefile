@@ -33,11 +33,14 @@ OBJECTS = $(SOURCES:.c=.o)
 
 OBJECTS_BONUS = $(SOURCES_BONUS:.c=.o)
 
+INCLUDE = -L../ft_printf -lftprintf
+
 %.o: %.c
 	$(CC) -c $(CFLAGS) $?
 
 $(NAME) : $(OBJECTS)
-	ar -rcs $(NAME) $(OBJECTS)
+	make -C ../ft_printf
+	ar -rcs $(NAME) $(OBJECTS) $(INCLUDE)
 
 bonus : $(OBJECTS) $(OBJECTS_BONUS)
 	ar -rcs $(NAME) $(OBJECTS) $(OBJECTS_BONUS)
