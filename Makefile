@@ -47,7 +47,7 @@ clean :
 	$(MAKE) -C lib/ft_printf clean
 
 fclean : clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS)
 	$(MAKE) -C lib/libft fclean
 	$(MAKE) -C lib/ft_printf fclean
 

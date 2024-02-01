@@ -1,5 +1,10 @@
 #include "../../inc/checker.h"
 
+void	check_operation(char *op)
+{
+	// to do
+}
+
 void	execute_operation(t_ps *data, char *op)
 {
 	if (op[0] == 's' && op[1] == 'a' && op[2] == '\n')
@@ -35,17 +40,11 @@ void	execute_operation(t_ps *data, char *op)
 	}
 }
 
-void    check(t_ps *data)
+void    checker(t_ps *data)
 {
-	int tmp = 0;
-
-	if (data)
-		tmp = 1;
-
 	char	*op;
 
 	op = get_next_line(0);
-
 	while (op && op[0] != '\n')
 	{
 		execute_operation(data, op);
@@ -73,7 +72,7 @@ int	main(int argc, char **argv)
 			exit(EXIT_FAILURE);
 		data.tab_to_free = true;
 		init_data(&data, argc, data.tab);
-		check(&data);
+		checker(&data);
 		free_data(&data);
 	}
 	else if (argc > 2)
@@ -82,7 +81,7 @@ int	main(int argc, char **argv)
 		argv++;
 		data.tab_to_free = false;
 		init_data(&data, argc, argv);
-		check(&data);
+		checker(&data);
 		free_data(&data);
 	}
 	exit(EXIT_SUCCESS);
