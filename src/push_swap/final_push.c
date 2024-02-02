@@ -21,9 +21,9 @@ void	last_rotation_a(t_stack *a)
 	strategy = strategy_b_to_a(a, min);
 	while (a->values[a->top] != min)
 	{
-		if (strategy == STRAT_1)
+		if (strategy == 1)
 			rotate_a(a);
-		if (strategy == STRAT_2)
+		if (strategy == 2)
 			r_rotate_a(a);
 	}
 }
@@ -49,8 +49,8 @@ int	strategy_b_to_a(t_stack *a, int value_dst)
 		i = index_up(a, i);
 	}
 	if (count_1 <= count_2)
-		return (STRAT_1);
-	return (STRAT_2);
+		return (1);
+	return (2);
 }
 
 int	value_location_a(t_stack *a, int value_src)
@@ -85,9 +85,9 @@ void	push_to_a(t_stack *a, t_stack *b, int value_src)
 	strategy = strategy_b_to_a(a, value_dst);
 	while (a->values[a->top] != value_dst)
 	{
-		if (strategy == STRAT_1)
+		if (strategy == 1)
 			rotate_a(a);
-		if (strategy == STRAT_2)
+		if (strategy == 2)
 			r_rotate_a(a);
 	}
 	push_a(a, b);

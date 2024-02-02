@@ -17,13 +17,13 @@ void	align_a_and_b(t_stack *a, t_stack *b, int value_src, int value_dst)
 	int	strategy;
 
 	strategy = define_strategy(a, b, value_src, value_dst);
-	if (strategy == STRAT_1)
+	if (strategy == 1)
 		ex_first_strategy(a, b, value_src, value_dst);
-	if (strategy == STRAT_2)
+	if (strategy == 2)
 		ex_second_strategy(a, b, value_src, value_dst);
-	if (strategy == STRAT_3)
+	if (strategy == 3)
 		ex_third_strategy(a, b, value_src, value_dst);
-	if (strategy == STRAT_4)
+	if (strategy == 4)
 		ex_fourth_strategy(a, b, value_src, value_dst);
 }
 

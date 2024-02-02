@@ -22,10 +22,6 @@
 # define true 1
 # define false 0
 # define STRATS 4
-# define STRAT_1 1
-# define STRAT_2 2
-# define STRAT_3 3
-# define STRAT_4 4
 
 typedef struct s_stack
 {
