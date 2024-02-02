@@ -49,7 +49,7 @@ clean :
 	@tput setaf 2
 	@rm -f $(OBJ1) $(OBJ2) $(OBJ_BONUS)
 	@$(MAKE) -sC $(LIBFTDIR) clean
-	@echo environment cleaned
+	@echo object files deleted
 
 fclean : clean
 	@tput setaf 2

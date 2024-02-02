@@ -26,12 +26,12 @@ int	index_down(t_stack *stck, int index)
 	return (index - 1);
 }
 
-bool	stack_empty(t_stack *a)
+int	stack_empty(t_stack *a)
 {
 	return (a->num_entries == 0);
 }
 
-bool	stack_full(t_stack *a)
+int stack_full(t_stack *a)
 {
 	return (a->num_entries == a->size);
 }

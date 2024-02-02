@@ -12,7 +12,7 @@
 
 #include "../../inc/push_swap.h"
 
-bool	is_stack_sorted(t_stack *stck)
+int	is_stack_sorted(t_stack *stck)
 {
 	int	i;
 

@@ -15,10 +15,12 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdbool.h>
-# include <limits.h>
 # include "../lib/libft/libft.h"
 
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
+# define true 1
+# define false 0
 # define STRATS 4
 # define STRAT_1 1
 # define STRAT_2 2
@@ -39,7 +41,7 @@ typedef struct s_push_swap
 	t_stack	a;
 	t_stack	b;
 	char	**tab;
-	bool	tab_to_free;
+	int		tab_to_free;
 }	t_ps;
 
 int		main(int argc, char **argv);
@@ -57,8 +59,8 @@ void	simplify_and_stack(int *tab, int *values, int size);
 int		index_down(t_stack *stck, int index);
 int		index_up(t_stack *stck, int index);
 
-bool	stack_full(t_stack *stck);
-bool	stack_empty(t_stack *stck);
+int		stack_full(t_stack *stck);
+int		stack_empty(t_stack *stck);
 
 void	error(t_ps *data);
 void	free_data(t_ps *data);
@@ -83,7 +85,7 @@ void	r_rotate_b(t_stack *b);
 void	r_rotate_ab(t_stack *a, t_stack *b);
 
 void	sort(t_ps *data);
-bool	is_stack_sorted(t_stack *a);
+int		is_stack_sorted(t_stack *a);
 
 void	sort_three(t_stack *a);
 
