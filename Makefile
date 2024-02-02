@@ -46,13 +46,13 @@ all : $(NAME)
 bonus : $(BONUS)
 
 clean :
-	@tput setaf 2
+	@tput setaf 3
 	@rm -f $(OBJ1) $(OBJ2) $(OBJ_BONUS)
 	@$(MAKE) -sC $(LIBFTDIR) clean
 	@echo object files deleted
 
 fclean : clean
-	@tput setaf 2
+	@tput setaf 3
 	@rm -f $(NAME) $(BONUS)
 	@$(MAKE) -sC $(LIBFTDIR) fclean
 	@echo executable files deleted
