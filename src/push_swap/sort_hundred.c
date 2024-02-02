@@ -25,7 +25,7 @@ int	value_location_in_b(t_stack *b, int value)
 			return (b->values[i]);
 		i = index_up(b, i);
 	}
-	return (-1);
+	exit(EXIT_FAILURE);
 }
 
 int	find_value_dst(t_stack *b, int value)
