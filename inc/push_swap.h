@@ -19,8 +19,8 @@
 
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
-# define true 1
-# define false 0
+# define TRUE 1
+# define FALSE 0
 # define STRATS 4
 
 typedef struct s_stack

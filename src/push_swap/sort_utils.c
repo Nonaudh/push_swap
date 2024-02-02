@@ -22,8 +22,8 @@ int	is_stack_sorted(t_stack *stck)
 		i = index_up(stck, i);
 	}
 	if (i == stck->top)
-		return (true);
-	return (false);
+		return (TRUE);
+	return (FALSE);
 }
 
 int	find_max_value(t_stack *stck)
