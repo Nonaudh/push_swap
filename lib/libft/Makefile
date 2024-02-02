@@ -45,10 +45,10 @@ bonus : $(OBJECTS) $(OBJECTS_BONUS)
 	ar -rcs $(NAME) $(OBJECTS) $(OBJECTS_BONUS)
 
 clean :
-	rm -f $(OBJECTS) $(OBJECTS_BONUS)
+	@rm -f $(OBJECTS) $(OBJECTS_BONUS)
 
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

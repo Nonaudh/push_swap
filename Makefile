@@ -20,34 +20,42 @@ OBJ_BONUS = $(SRC_BONUS:%.c=%.o)
 
 INCLUDE = -Llib/libft -lft
 
-LIBFT_PATH = lib/libft
+LIBFTDIR = lib/libft
 
 NAME = push_swap
 
 BONUS = checker
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
+	@$(CC) $(CFLAGS) -s -c $< -o ${<:.c=.o}
 
 $(NAME) : $(OBJ1) $(OBJ2)
-	$(MAKE) -C $(LIBFT_PATH)
-	$(CC) $(CFLAGS) $(OBJ1) $(OBJ2) $(INCLUDE) -o $(NAME)
+	@tput setaf 2
+	@$(MAKE) -sC $(LIBFTDIR)
+	@$(CC) $(CFLAGS) $(OBJ1) $(OBJ2) $(INCLUDE) -o $(NAME)
+	@echo $(NAME) compiled
 
 $(BONUS) : $(OBJ_BONUS) $(OBJ2)
-	$(MAKE) -C $(LIBFT_PATH)
-	$(CC) $(CFLAGS) $(OBJ_BONUS) $(OBJ2) $(INCLUDE) -o $(BONUS)
+	@tput setaf 2
+	@$(MAKE) -sC $(LIBFTDIR)
+	@$(CC) $(CFLAGS) $(OBJ_BONUS) $(OBJ2) $(INCLUDE) -o $(BONUS)
+	@echo $(BONUS) compiled
 
 all : $(NAME)
 
 bonus : $(BONUS)
 
 clean :
-	rm -f $(OBJ1) $(OBJ2) $(OBJ_BONUS)
-	$(MAKE) -C $(LIBFT_PATH) clean
+	@tput setaf 2
+	@rm -f $(OBJ1) $(OBJ2) $(OBJ_BONUS)
+	@$(MAKE) -sC $(LIBFTDIR) clean
+	@echo environment cleaned
 
 fclean : clean
-	rm -f $(NAME) $(BONUS)
-	$(MAKE) -C $(LIBFT_PATH) fclean
+	@tput setaf 2
+	@rm -f $(NAME) $(BONUS)
+	@$(MAKE) -sC $(LIBFTDIR) fclean
+	@echo executable files deleted
 
 re: fclean all
 
