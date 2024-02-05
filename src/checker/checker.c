@@ -48,6 +48,7 @@ int	main(int argc, char **argv)
 {
 	t_ps	data;
 
+	data.tab = NULL;
 	if (argc == 2)
 	{
 		argc = count_arg(argv[1], ' ');
@@ -56,7 +57,6 @@ int	main(int argc, char **argv)
 		data.tab = ft_split(argv[1], ' ');
 		if (!data.tab)
 			exit(EXIT_FAILURE);
-		data.tab_to_free = TRUE;
 		init_data(&data, argc, data.tab);
 		checker(&data);
 		free_data(&data);
@@ -65,7 +65,6 @@ int	main(int argc, char **argv)
 	{
 		argc--;
 		argv++;
-		data.tab_to_free = FALSE;
 		init_data(&data, argc, argv);
 		checker(&data);
 		free_data(&data);

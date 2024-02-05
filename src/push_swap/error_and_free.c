@@ -21,7 +21,7 @@ void	error(t_ps *data)
 
 void	free_data(t_ps *data)
 {
-	if (data->tab_to_free)
+	if (data->tab)
 		free_the_tab(data->tab, (data->a.size));
 	free(data->a.values);
 	free(data->b.values);

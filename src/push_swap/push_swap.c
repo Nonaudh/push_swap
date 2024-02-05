@@ -3,6 +3,7 @@
 int	main(int argc, char **argv)
 {
 	t_ps	data;
+	data.tab = NULL;
 
 	if (argc == 2)
 	{
@@ -12,7 +13,6 @@ int	main(int argc, char **argv)
 		data.tab = ft_split(argv[1], ' ');
 		if (!data.tab)
 			exit(EXIT_FAILURE);
-		data.tab_to_free = TRUE;
 		init_data(&data, argc, data.tab);
 		sort(&data);
 		free_data(&data);
@@ -21,7 +21,6 @@ int	main(int argc, char **argv)
 	{
 		argc--;
 		argv++;
-		data.tab_to_free = FALSE;
 		init_data(&data, argc, argv);
 		sort(&data);
 		free_data(&data);

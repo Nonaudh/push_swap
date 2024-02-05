@@ -37,7 +37,6 @@ typedef struct s_push_swap
 	t_stack	a;
 	t_stack	b;
 	char	**tab;
-	int		tab_to_free;
 }	t_ps;
 
 int		main(int argc, char **argv);
