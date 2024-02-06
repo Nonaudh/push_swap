@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_operation.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahuge <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/06 13:53:40 by ahuge             #+#    #+#             */
+/*   Updated: 2024/02/06 13:53:42 by ahuge            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/checker.h"
 
 void	check_swap(t_ps *data, char *op)
@@ -29,7 +41,6 @@ void	check_push(t_ps *data, char *op)
 		push(&data->b, &data->a);
 		return ;
 	}
-
 	if (op[1] == 'b' && op[2] == '\n')
 	{
 		push(&data->a, &data->b);
@@ -46,13 +57,11 @@ void	check_rotate(t_ps *data, char *op)
 		rotate(&data->a);
 		return ;
 	}
-		
 	if (op[1] == 'b' && op[2] == '\n')
 	{
 		rotate(&data->b);
 		return ;
 	}
-		
 	if (op[1] == 'r' && op[2] == '\n')
 	{
 		rotate(&data->a);
@@ -70,13 +79,11 @@ void	check_reverse_rotate(t_ps *data, char *op)
 		reverse_rotate(&data->a);
 		return ;
 	}
-		
 	if (op[2] == 'b' && op[3] == '\n')
 	{
 		reverse_rotate(&data->b);
 		return ;
 	}
-		
 	if (op[2] == 'r' && op[3] == '\n')
 	{
 		reverse_rotate(&data->a);

@@ -18,7 +18,7 @@ char	*trim_the_line(char *full_line, size_t	surplus)
 	char	*final_line;
 
 	i = 0;
-	final_line = malloc(sizeof(char) * (ft_strlen_gnl(full_line) - surplus + 1));
+	final_line = malloc(sizeof(char) * (ft_strlen_g(full_line) - surplus + 1));
 	if (!final_line)
 		return (NULL);
 	while (full_line[i] && full_line[i] != '\n')
@@ -50,7 +50,7 @@ char	*save_surplus(char *full_line)
 		i++;
 	if (full_line[i] == '\n')
 		i++;
-	surplus = malloc(sizeof(char) * (ft_strlen_gnl(full_line) - i + 1));
+	surplus = malloc(sizeof(char) * (ft_strlen_g(full_line) - i + 1));
 	if (!surplus)
 		return (NULL);
 	while (full_line[i])
@@ -81,7 +81,7 @@ char	*fill_the_lines(int fd, char *lines, char *buffer)
 			free(lines);
 			return (NULL);
 		}
-		lines = ft_strjoin_gnl(lines, buffer);
+		lines = ft_strjoin_g(lines, buffer);
 		if (!lines)
 			return (NULL);
 	}
@@ -95,7 +95,7 @@ char	*line_to_trim(int fd, char *surplus)
 	char	*lines;
 	char	*full_line;
 
-	lines = malloc(sizeof(char) * (ft_strlen_gnl(surplus) + 1));
+	lines = malloc(sizeof(char) * (ft_strlen_g(surplus) + 1));
 	if (!lines)
 		return (NULL);
 	lines[0] = 0;
@@ -105,7 +105,7 @@ char	*line_to_trim(int fd, char *surplus)
 	buffer[0] = 0;
 	if (surplus)
 	{
-		ft_strlcpy(lines, surplus, ft_strlen_gnl(surplus) + 1);
+		ft_strlcpy(lines, surplus, ft_strlen_g(surplus) + 1);
 		free (surplus);
 	}
 	full_line = fill_the_lines(fd, lines, buffer);
@@ -125,12 +125,12 @@ char	*get_next_line(int fd)
 		return (NULL);
 	surplus[fd] = save_surplus(full_line);
 	if (!surplus[fd])
-		return(NULL);
+		return (NULL);
 	if (surplus[fd][0] == 0)
 	{
 		free(surplus[fd]);
 		surplus[fd] = NULL;
 	}
-	final_line = trim_the_line(full_line, ft_strlen_gnl(surplus[fd]));
+	final_line = trim_the_line(full_line, ft_strlen_g(surplus[fd]));
 	return (final_line);
 }

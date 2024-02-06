@@ -27,7 +27,7 @@ NAME = push_swap
 BONUS = checker
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -s -c $< -o ${<:.c=.o}
+	@$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
 
 $(NAME) : $(OBJ1) $(OBJ2)
 	@tput setaf 2

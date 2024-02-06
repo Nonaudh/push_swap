@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahuge <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/06 13:53:28 by ahuge             #+#    #+#             */
+/*   Updated: 2024/02/06 13:53:31 by ahuge            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/checker.h"
 
 void	execute_operation(t_ps *data, char *op)
@@ -26,7 +38,7 @@ void	execute_operation(t_ps *data, char *op)
 	error(data);
 }
 
-void    checker(t_ps *data)
+void	checker(t_ps *data)
 {
 	char	*op;
 
@@ -38,7 +50,7 @@ void    checker(t_ps *data)
 		op = get_next_line(0);
 	}
 	free (op);
-	if(is_stack_sorted(&data->a) && stack_empty(&data->b))
+	if (is_stack_sorted(&data->a) && stack_empty(&data->b))
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");

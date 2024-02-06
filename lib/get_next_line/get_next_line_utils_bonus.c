@@ -18,7 +18,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	int		x;
 
 	i = 0;
-	x = ft_strlen_gnl(src);
+	x = ft_strlen_g(src);
 	if (!dest || !src)
 		return (0);
 	if (size != 0)
@@ -47,7 +47,7 @@ char	*ft_strchr(const char *src, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin_gnl(char *line, char *buffer)
+char	*ft_strjoin_g(char *line, char *buffer)
 {
 	int		i;
 	int		z;
@@ -57,7 +57,7 @@ char	*ft_strjoin_gnl(char *line, char *buffer)
 	z = 0;
 	if (!line || !buffer)
 		return (NULL);
-	tab = malloc(sizeof(char) * (ft_strlen_gnl(line) + ft_strlen_gnl(buffer) + 1));
+	tab = malloc(sizeof(char) * (ft_strlen_g(line) + ft_strlen_g(buffer) + 1));
 	if (tab == NULL)
 		return (NULL);
 	while (line[i])
@@ -75,7 +75,7 @@ char	*ft_strjoin_gnl(char *line, char *buffer)
 	return (tab);
 }
 
-size_t	ft_strlen_gnl(const char *s)
+size_t	ft_strlen_g(const char *s)
 {
 	size_t	i;
 
