@@ -49,6 +49,7 @@ int		stack_empty(t_stack *stck);
 int		stack_full(t_stack *stck);
 
 void	check_valid_arg(t_ps *data, char *arg, int *tab);
+void	check_end_arg(t_ps *data, char *arg, int *tab);
 void	check_duplicate(t_ps *data, int *tab, int size);
 void	simplify_and_stack(int *tab, int *values, int size);
 
@@ -58,6 +59,8 @@ int		index_up(t_stack *stck, int index);
 void	error(t_ps *data);
 void	free_data(t_ps *data);
 void	free_the_tab(char **tab, int argc);
+void	error_arg(t_ps *data, int *tab);
+void	no_arg(void);
 
 void	swap(t_stack *stck);
 void	push(t_stack *src, t_stack *dst);

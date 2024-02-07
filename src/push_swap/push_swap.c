@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	{
 		argc = count_arg(argv[1], ' ');
 		if (!argc)
-			exit(EXIT_FAILURE);
+			no_arg();
 		data.tab = ft_split(argv[1], ' ');
 		if (!data.tab)
 			exit(EXIT_FAILURE);

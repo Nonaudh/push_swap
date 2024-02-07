@@ -12,11 +12,23 @@
 
 #include "../../inc/checker.h"
 
+void	no_arg(void)
+{
+	ft_putendl_fd("Error", 2);
+	exit(EXIT_FAILURE);
+}
+
 void	error(t_ps *data)
 {
 	free_data(data);
-	ft_putstr_fd("Error\n", 2);
+	ft_putendl_fd("Error", 2);
 	exit(EXIT_FAILURE);
+}
+
+void	error_arg(t_ps *data, int *tab)
+{
+	free(tab);
+	error(data);
 }
 
 void	free_data(t_ps *data)

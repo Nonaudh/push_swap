@@ -41,23 +41,36 @@ void	check_valid_arg(t_ps *data, char *arg, int *tab)
 
 	i = 0;
 	nb = 0;
-	if (arg[i] <= 32)
-	{
-		free(tab);
-		error(data);
-	}
+	while (arg[i] <= 32 && arg[i] > 0)
+		i++;
+	if (!arg[i])
+		error_arg(data, tab);
 	if (arg[i] == '-' || arg[i] == '+')
 		i++;
-	while (arg[i])
+	if (arg[i] <= 32)
+		error_arg(data, tab);
+	while (arg[i] > 32)
 	{
 		if (!ft_isdigit(arg[i]))
-		{
-			free(tab);
-			error(data);
-		}
+			error_arg(data, tab);
 		i++;
 	}
+	if (arg[i])
+		check_end_arg(data, arg + i, tab);
 	nb = ft_atol(arg);
 	if (nb < INT_MIN || nb > INT_MAX)
-		error(data);
+		error_arg(data, tab);
+}
+
+void	check_end_arg(t_ps *data, char *arg, int *tab)
+{
+	int	i;
+
+	i = 0;
+	while (arg[i])
+	{
+		if (arg[i] != 32)
+			error_arg(data, tab);
+		i++;
+	}
 }
